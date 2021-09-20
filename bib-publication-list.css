@@ -14,6 +14,10 @@ span.undefined {
     clear: both;
 }
 
+.bibchart-container {
+    overflow-x: auto;
+}
+
 .bibchart {
     width: 100%;
     margin-bottom: 20px;

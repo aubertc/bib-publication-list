@@ -14,7 +14,9 @@ Include the CSS:
 All you need to do is to include the BibTeX into an HTML page and tell the script to turn it
 into a sortable and searchable table. For example:
 
-    <table id="pubTable" class="display"></table>
+    <div id="bib-publication-list">
+        <table></table>
+    </div>
     <pre id="bibtex">@article{Karavirta:JVLCTaxonomy,
        title = {A comprehensive taxonomy of algorithm animation languages},
        journal = {Journal of Visual Languages \& Computing},
@@ -31,13 +33,13 @@ into a sortable and searchable table. For example:
 Finally, the bib-publication-list needs to know the input data element and the output table. So, one
 line of JavaScript:
 
-    bibtexify("#bibtex", "pubTable");
+    bibtexify("#bibtex", "bib-publication-list");
 
 Alternatively, the bibtex can be loaded from a file. Personally I prefer including it in the HTML,
 though. This way, browsers without JavaScript enabled get at least to see the bibtex instead of a blank page.
 This causes an ugly-looking flash of unstyled content, though.
 
-    bibtexify("example-biblist.bib", "pubTable");
+    bibtexify("example-biblist.bib", "bib-publication-list");
 
 The result looks like my publication list at: http://villekaravirta.com/publications/.
 
@@ -52,6 +54,20 @@ to your CSS and
 
 to your HTML.
 
+The graph and the legend will be inserted just above the table. If you want to place them anywhere else in
+the page, e.g. if you want to wrap your table in a container and have the graph and legend outside, you
+can declare them in the HTML. The script won't insert new elements before the table and will instead use
+the ones you have created.
+
+    <div id="bib-publication-list">
+        <div class="bibchart-container">
+            <div class="bibchart"></div>
+        </div>
+        <div class="legend"></div>
+        <div class="some-table-wrapper">
+            <table></table>
+        </div>
+    </div>
 
 ## Configuration Options
 

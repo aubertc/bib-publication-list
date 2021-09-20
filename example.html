@@ -13,8 +13,29 @@
       #bibtex { display: block;}
       </style>
     </noscript>
-		<table id="pubTable" class="display"></table>
-        <pre id="bibtex" style="display:none;">
+
+    <!--Automatic graph positioning-->
+    <div id="bib-pubplication-list">
+      <table></table>
+    </div>
+
+    <!--Custom graph positioning-->
+    <!--
+    <div id="bib-pubplication-list">
+      <div class="bibchart-container">
+        <div class="bibchart">
+            
+        </div>
+      </div>
+      <div class="legend">
+
+      </div>
+      <div class="table-responsive">
+          <table></table>
+      </div>
+    </div>
+    -->
+    <pre id="bibtex" style="display:none;">
 @InProceedings{Karavirta:APlus,
   author = {Ville Karavirta and Petri Ihantola and Teemu Koskinen},
   title = {Service-Oriented Approach to Improve Interoperability of e-Learning Systems},
@@ -630,7 +651,7 @@ keywords = {Xaal}
 		<script type="text/javascript" src="build/bib-list.js"></script>
 		<script type="text/javascript">
 		    $(document).ready(function() {
-        	bibtexify("#bibtex", "pubTable", {'tweet': 'vkaravir'});
+        	bibtexify("#bibtex", "bib-pubplication-list", {'tweet': 'vkaravir'});
     		});
 		</script>
 	</body>

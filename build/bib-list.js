@@ -2730,8 +2730,9 @@ var bibtexify = (function($) {
         }
     };
 
-    var Bib2HTML = function(data, $pubTable, options) {
+    var Bib2HTML = function(data, bibElemId, $pubTable, options) {
         this.options = options;
+        this.bibElemId = bibElemId;
         this.$pubTable = $pubTable;
         this.stats = { };
         this.initialize(data);
@@ -2842,7 +2843,8 @@ var bibtexify = (function($) {
             }
             return 0;
         });
-        var chartIdSelector = '#' + this.$pubTable[0].id + 'pubchart';
+        var chartSelector = '#' + this.bibElemId + ' .bibchart';
+        var legendSelector = '#' + this.bibElemId + ' .legend';
         var legendTypes = [];
         var stats2html = function(item) {
             var types = item.typeArr;
@@ -2871,13 +2873,16 @@ var bibtexify = (function($) {
         yearstats.forEach(function(item) {
             statsHtml += stats2html(item);
         });
-        var legendHtml = '<div class="legend">';
+        var legendHtml = '';
         for (var i = 0, l = legendTypes.length; i < l; i++) {
             var legend = legendTypes[i];
             legendHtml += '<div><span class="pub ' + legend + '"></span>' + bib2html.labels[legend] + '</div>';
         }
-        legendHtml += '</div>';
-        $(chartIdSelector).html(statsHtml).after(legendHtml);
+        $(chartSelector).html(statsHtml)
+        if ($(legendSelector).length === 0) {
+            $(chartSelector).after('<div class="legend"></div>');
+        }
+        $(legendSelector).html(legendHtml);
     };
 
     // Creates a new publication list to the HTML element with ID
@@ -2899,20 +2904,22 @@ var bibtexify = (function($) {
         var options = $.extend({}, {'visualization': true,
                                 'sorting': [[0, "desc"], [1, "desc"]]},
                                 opts);
-        var $pubTable = $("#" + bibElemId).addClass("bibtable");
+        var $pubTable = $("#" + bibElemId + " table").addClass("bibtable");
         if ($("#shutter").length === 0) {
             $pubTable.before('<div id="shutter" class="hidden"></div>');
             $("#shutter").click(EventHandlers.hidebib);
         }
-        if (options.visualization) {
-            $pubTable.before('<div id="' + bibElemId + 'pubchart" class="bibchart"></div>');
+        if ($("#" + bibElemId + " .bibchart").length > 0) {
+            options.visualization = true;
+        } else if (options.visualization) {
+            $pubTable.before('<div class="bibchart-container"><div class="bibchart"></div></div><div class="legend"></div>');
         }
         var $bibSrc;
         if(bibsrc.indexOf('/') === -1) {
             $bibSrc = $(bibsrc);
         }
         if ($bibSrc && $bibSrc.length) { // we found an element, use its HTML as bibtex
-            new Bib2HTML($bibSrc.html(), $pubTable, options);
+            new Bib2HTML($bibSrc.html(), bibElemId, $pubTable, options);
             $bibSrc.hide();
         } else { // otherwise we assume it is a URL
             var callbackHandler = function(data) {
