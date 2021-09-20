@@ -2843,17 +2843,10 @@ var bibtexify = (function($) {
             return 0;
         });
         var chartIdSelector = '#' + this.$pubTable[0].id + 'pubchart';
-        var chartHeight = $(chartIdSelector).height();
-        var styleStr = chartIdSelector + ' .year { width: ' +
-                        (100.0/yearstats.length) + '%; }';
         var legendTypes = [];
         var stats2html = function(item) {
             var types = item.typeArr;
-            var borderHeight = isTypeMode ? types.length * 2 : item.count * 2;
-            var totalHeight = item.count / maxItems * chartHeight;
-            var pubHeight = (totalHeight - borderHeight) / item.count;
             var str = '<div class="year">';
-            str += '<div class="filler" style="height:' + (chartHeight - totalHeight) + 'px;"></div>';
             var itemStr = '';
             for (var i = 0; i < types.length; i++) {
                 var type = types[i];
@@ -2862,11 +2855,11 @@ var bibtexify = (function($) {
                 }
                 if (isTypeMode) {
                     // just one block for publication type
-                    itemStr += '<div style="height:' + (item.types[type] * pubHeight) + 'px" class="pub ' + type + '"></div>';
+                    itemStr += '<div class="pub ' + type + '"></div>';
                 } else {
                     // one block for each entry of the publication type
                     for (var j = 0; j < item.types[type]; j++) {
-                        itemStr += '<div style="height:' + pubHeight + 'px" class="pub ' + type + '"></div>';
+                        itemStr += '<div class="pub ' + type + '"></div>';
                     }
                 }
             }
@@ -2874,14 +2867,14 @@ var bibtexify = (function($) {
 
             return str + '<div class="yearlabel">' + item.year + '</div></div>';
         };
-        var statsHtml = '<style>' + styleStr + '</style>';
+        var statsHtml = '';
         yearstats.forEach(function(item) {
             statsHtml += stats2html(item);
         });
         var legendHtml = '<div class="legend">';
         for (var i = 0, l = legendTypes.length; i < l; i++) {
             var legend = legendTypes[i];
-            legendHtml += '<span class="pub ' + legend + '"></span>' + bib2html.labels[legend];
+            legendHtml += '<div><span class="pub ' + legend + '"></span>' + bib2html.labels[legend] + '</div>';
         }
         legendHtml += '</div>';
         $(chartIdSelector).html(statsHtml).after(legendHtml);
