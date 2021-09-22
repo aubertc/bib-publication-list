@@ -2545,12 +2545,20 @@ var bibtexify = (function($) {
             var authorsStr = '';
             var author;
             if (!authorData) { return authorsStr ;}
-            for (var index = 0; index < authorData.length; index++) {
-                if (index > 0) { authorsStr += ", "; }
-                author = authorData[index];
+            if (authorData.length > 6) {
+                author = authorData[0];
                 authorsStr += author.first
-                              + (author.von ? ' ' + author.von + ' ' : ' ')
-                              + author.last;
+                                + (author.von ? ' ' + author.von + ' ' : ' ')
+                                + author.last
+                                + " et al.";
+            } else {
+                for (var index = 0; index < authorData.length; index++) {
+                    if (index > 0) { authorsStr += ", "; }
+                    author = authorData[index];
+                    authorsStr += author.first
+                    + (author.von ? ' ' + author.von + ' ' : ' ')
+                    + author.last;
+                }
             }
             return htmlify(authorsStr);
         },
