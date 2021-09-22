@@ -433,10 +433,10 @@ var bibtexify = (function($) {
             $pubTable.before('<div id="shutter" class="hidden"></div>');
             $("#shutter").click(EventHandlers.hidebib);
         }
-        if ($("#" + bibElemId + " .bibchart").length > 0) {
-            options.visualization = true;
-        } else if (options.visualization) {
+        if (options.visualization && $("#" + bibElemId + " .bibchart").length === 0) {
             $pubTable.before('<div class="bibchart-container"><div class="bibchart"></div></div><div class="legend"></div>');
+        } else if (!options.visualization && $("#" + bibElemId + " .bibchart").length > 0) {
+            $("#" + bibElemId + " .bibchart")[0].remove();
         }
         var $bibSrc;
         if(bibsrc.indexOf('/') === -1) {
