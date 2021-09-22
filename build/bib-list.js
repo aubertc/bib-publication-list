@@ -2617,7 +2617,7 @@ var bibtexify = (function($) {
         inproceedings: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
                 entryData.title + ". In <em>" + entryData.booktitle +
-                ", pp. " + entryData.pages +
+                ((entryData.pages)?", pp. " + entryData.pages:"") +
                 ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
         },
         incollection: function(entryData) {
@@ -2625,14 +2625,14 @@ var bibtexify = (function($) {
                 entryData.title + ". In " +
                 ((entryData.editor)?"" + this.authors2html(entryData.editor) + ", editor, ":"") +
                 "<em>" + entryData.booktitle +
-                ", pp. " + entryData.pages +
+                ((entryData.pages)?", pp. " + entryData.pages:"") +
                 ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
         },
         article: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
                 entryData.title + ". <em>" + entryData.journal + ", " + entryData.volume +
                 ((entryData.number)?"(" + entryData.number + ")":"")+ ", " +
-                "pp. " + entryData.pages + ". " +
+                ((entryData.pages)?"pp. " + entryData.pages:"") +
                 ((entryData.address)?entryData.address + ".":"") + "<\/em>";
         },
         misc: function(entryData) {
@@ -2644,12 +2644,13 @@ var bibtexify = (function($) {
         mastersthesis: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
             entryData.title + ". " + entryData.type + ". " +
-            entryData.organization + ", " + entryData.school + ".";
+            ((entryData.organization)?entryData.organization + ", ":"") + entryData.school + ".";
         },
         techreport: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
                 entryData.title + ". " + entryData.institution + ". " +
-                entryData.number + ". " + entryData.type + ".";
+                ((entryData.number)?entryData.number + ". ":"") +
+                ((entryData.type)?entryData.type + ".":"");
         },
         book: function(entryData) {
             return this.authors2html(entryData.author || entryData.editor) + " (" + entryData.year + "). " +
@@ -2661,7 +2662,8 @@ var bibtexify = (function($) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
                 entryData.chapter + " in <em>" + entryData.title + "<\/em>, " +
                 ((entryData.editor)?" Edited by " + this.authors2html(entryData.editor) + ", ":"") +
-                entryData.publisher + ", pp. " + entryData.pages + "" +
+                entryData.publisher +
+                ((entryData.pages)?", pp. " + entryData.pages:"") +
                 ((entryData.series)?", <em>" + entryData.series + "<\/em>":"") +
                 ((entryData.volume)?", Vol. " + entryData.volume + "":"") +
                 ((entryData.issn)?", ISBN: " + entryData.issn + "":"") +
