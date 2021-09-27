@@ -2210,7 +2210,7 @@ if(nTmp){iPushFeature=1}break}}}}}}}}}}}if(iPushFeature==1){if(typeof oSettings.
 }function _fnFeatureHtmlFilter(oSettings){var nFilter=document.createElement("div");
 if(oSettings.sTableId!==""&&typeof oSettings.aanFeatures.f=="undefined"){nFilter.setAttribute("id",oSettings.sTableId+"_filter")
 }nFilter.className=oSettings.oClasses.sFilter;var sSpace=oSettings.oLanguage.sSearch===""?"":" ";
-nFilter.innerHTML=oSettings.oLanguage.sSearch+sSpace+'<input type="text" />';var jqFilter=$("input",nFilter);
+nFilter.innerHTML='<label>'+oSettings.oLanguage.sSearch+sSpace+'<input type="text" /></label>';var jqFilter=$("input",nFilter);
 jqFilter.val(oSettings.oPreviousSearch.sSearch.replace('"',"&quot;"));jqFilter.keyup(function(e){var n=oSettings.aanFeatures.f;
 for(var i=0,iLen=n.length;i<iLen;i++){if(n[i]!=this.parentNode){$("input",n[i]).val(this.value)
 }}_fnFilterComplete(oSettings,{sSearch:this.value,bEscapeRegex:oSettings.oPreviousSearch.bEscapeRegex})
