@@ -1,3 +1,18 @@
+# bib-publication-list
+
+This is a fork of [bib-publication-list](https://github.com/vkaravir/bib-publication-list) that I created for personal use.
+
+The main changes are:
+
+- More flexible HTML structure
+- Use of flexbox for a more responsive behavior
+- Updated build tools
+  - Removed deprecated code from old node versions
+  - Switched JS minifier to uglify-js to improve minification
+- Some minor changes in the CSS style
+- Fixed some types of BibTex content requiring fields that are not actually required by BibTex standard
+- Introduced the use of "et al." for publications with more than 6 authors
+
 **bib-publication-list to automatically generate an interactive HTML publication list from a BibTeX file**
 
 ## Getting Started
