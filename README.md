@@ -1,6 +1,14 @@
 # bib-publication-list
 
-This is a fork of [bib-publication-list](https://github.com/vkaravir/bib-publication-list) that I created for personal use.
+This is a fork of [bib-publication-list](https://github.com/GioBonvi/bib-publication-list), which is itself a fork of [bib-publication-list](https://github.com/vkaravir/bib-publication-list) that I created for personal use.
+
+The main changes are:
+
+- [Updated](https://github.com/aubertc/bib-publication-list/commit/96fed3ad87cec534ca327c55a44a176fbb1c5e93) [DataTables](https://datatables.net/) to 1.13.1,
+- 
+
+# Previous fork
+
 
 The main changes are:
 
