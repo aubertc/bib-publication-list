@@ -248,23 +248,23 @@ var bibtexify = (function($) {
             'inbook': 100,
             'book': 110,
             'unpublished': 0
-        },  // Conference est utilisé pour les workshop, donc de poids plus faible que inproceedings, utilisé pour les conférences.
+        },  // Conference est utilisé pour les workshop, donc de poids plus faible que inproceedings, utilisé pour les conférences
         // labels used for the different types of entries
-        labels: {
-            'article': 'Journal',
-            'book': 'Book',
-            'conference': '<em>Workshop</em>',
-            'inbook': 'Book chapter',
-            'incollection': '',
-            'inproceedings': 'Conférence',
-            'manual': 'Manual',
-            'mastersthesis': 'Mémoire',
-            'misc': 'Misc',
-            'phdthesis': 'Thèse',
-            'proceedings': 'Édition',
-            'techreport': 'Rapport de recherche',
-            'unpublished': 'Soumis'
-        };
+    labels: {
+      'article': 'Journal',
+      'book': 'Book',
+      'conference': '<em>Workshop</em>',
+      'inbook': 'Book chapter',
+      'incollection': '',
+      'inproceedings': 'Conférence',
+      'manual': 'Manual',
+      'mastersthesis': 'Mémoire',
+      'misc': 'Misc',
+      'phdthesis': 'Thèse',
+      'proceedings': 'Édition',
+      'techreport': 'Rapport de recherche',
+      'unpublished': 'Soumis'}
+    };
     // format a phd thesis similarly to masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
