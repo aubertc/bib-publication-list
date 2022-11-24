@@ -2002,11 +2002,34 @@ var bibtexify = (function($) {
         links: function(entryData) {
             var itemStr = '';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
-                itemStr += ' (<a title="PDF-version of this article"  target="_blank" href="' +
+                itemStr += ' (<a title="Version PDF." href="' +
                             entryData.url + '">pdf<\/a>)';
             } else if (entryData.url) {
                 itemStr += ' (<a title="This article online" target="_blank" href="' + entryData.url +
                             '">link<\/a>)';
+            }
+            if (entryData.doi) {
+                itemStr += ' (<a title="Digital Object Identifier." href="http://dx.doi.org/' +
+                entryData.doi + '">doi<\/a>)';
+            }
+            if (entryData.archiveprefix) {
+                if (entryData.eprint) {
+                var archiveurl = '';
+                if (entryData.archiveprefix == "arXiv") {
+                    archiveurl = 'href="http://arxiv.org/abs/';
+                }
+                if (entryData.archiveprefix == "tel") {
+                    archiveurl = 'href="https://tel.archives-ouvertes.fr/';
+                }
+                if (entryData.archiveprefix == "hal") {
+                    archiveurl = 'href="https://hal.archives-ouvertes.fr/';
+                }
+                itemStr += ' (<a title="Version archivée sur ' + entryData.archiveprefix + '."' + archiveurl +
+                    entryData.eprint + '">' + entryData.archiveprefix + '<\/a>)';
+                }
+            }
+            if (entryData.file) {
+                itemStr += ' (<a title="Code source LaTeX." href="' + entryData.file + '">source<\/a>)';
             }
             return itemStr;
         },
@@ -2295,7 +2318,7 @@ var bibtexify = (function($) {
         var stats2html = function(item) {
             var types = item.typeArr;
             var str = '<div class="year">';
-            var itemStr = '';
+            var itemStr = '<br/>';
             for (var i = 0; i < types.length; i++) {
                 var type = types[i];
                 if (legendTypes.indexOf(type) === -1) {
