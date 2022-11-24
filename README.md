@@ -6,7 +6,8 @@ The main changes are:
 
 - [Updated](https://github.com/aubertc/bib-publication-list/commit/96fed3ad87cec534ca327c55a44a176fbb1c5e93) [DataTables](https://datatables.net/) to 1.13.1,
 - [Added support](https://github.com/aubertc/bib-publication-list/commit/4155d66a05e741443b545f0b207a51d970372d0c) for `doi` and `eprint` fields.
-- 
+- Changed some styles,
+- Translated some text to French :-)
 
 # Previous fork
 
