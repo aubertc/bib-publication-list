@@ -168,62 +168,62 @@ var bibtexify = (function($) {
         },
         // helper functions for formatting different types of bibtex entries
         inproceedings: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". In <em>" + entryData.booktitle +
-                ((entryData.pages)?", pp. " + entryData.pages:"") +
-                ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
+        return this.authors2html(entryData.author) + ".<br/>" +
+            "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/>" +
+            ((entryData.type) ? entryData.type : "" +
+            "In <em>" + entryData.booktitle +
+            ". Sous la dir. de " +  this.authors2html(entryData.editor) + ". " +
+            "T. " + entryData.volume + ". " +
+            entryData.series + ", pp. " + entryData.pages +
+            ((entryData.address) ? ", " + entryData.address : "") + ".<\/em>");
         },
         incollection: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". In " +
-                ((entryData.editor)?"" + this.authors2html(entryData.editor) + ", editor, ":"") +
+                entryData.title + ". Dans " +
+                ((entryData.editor)?"" + this.authors2html(entryData.editor) + ", editeur, ":"") +
                 "<em>" + entryData.booktitle +
                 ((entryData.pages)?", pp. " + entryData.pages:"") +
                 ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
         },
         article: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". <em>" + entryData.journal + ", " + entryData.volume +
-                ((entryData.number)?"(" + entryData.number + ")":"")+ ", " +
-                ((entryData.pages)?"pp. " + entryData.pages:"") +
-                ((entryData.address)?entryData.address + ".":"") + "<\/em>";
-        },
-        misc: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". " +
-                ((entryData.howpublished)?entryData.howpublished + ". ":"") +
-                ((entryData.note)?entryData.note + ".":"");
-        },
-        mastersthesis: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-            entryData.title + ". " + entryData.type + ". " +
-            ((entryData.organization)?entryData.organization + ", ":"") + entryData.school + ".";
-        },
-        techreport: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". " + entryData.institution + ". " +
-                ((entryData.number)?entryData.number + ". ":"") +
-                ((entryData.type)?entryData.type + ".":"");
-        },
-        book: function(entryData) {
-            return this.authors2html(entryData.author || entryData.editor) + " (" + entryData.year + "). " +
-                " <em>" + entryData.title + "<\/em>, " +
-                entryData.publisher + ", " + entryData.year +
-                ((entryData.issn)?", ISBN: " + entryData.issn + ".":".");
-        },
-        inbook: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.chapter + " in <em>" + entryData.title + "<\/em>, " +
-                ((entryData.editor)?" Edited by " + this.authors2html(entryData.editor) + ", ":"") +
-                entryData.publisher +
-                ((entryData.pages)?", pp. " + entryData.pages:"") +
-                ((entryData.series)?", <em>" + entryData.series + "<\/em>":"") +
-                ((entryData.volume)?", Vol. " + entryData.volume + "":"") +
-                ((entryData.issn)?", ISBN: " + entryData.issn + "":"") +
-                ".";
-        },
-        proceedings: function(entryData) {
-            return this.authors2html(entryData.editor) + ", editor(s) (" + entryData.year + "). " +
+      return this.authors2html(entryData.author) + ".<br/>" +
+        "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/><em>" + entryData.journal + ((entryData.volume) ? ", vol. " + entryData.volume : "") + ((entryData.number) ? "(" + entryData.number + ")" : "") + ((entryData.pages) ? ", pp. " + entryData.pages : "") + ". " + ((entryData.address) ? entryData.address + "." : "") + "<\/em>" + ((entryData.pubstate) ? entryData.pubstate : "");
+    },
+    unpublished: function(entryData) {
+      return this.authors2html(entryData.author) + ".<br/>" +
+        "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/><em>" + entryData.pubstate + ((entryData.pages) ? ", pp. " + entryData.pages : "") + ". " + "<\/em>"
+    },
+    misc: function(entryData) {
+        return this.authors2html(entryData.author || entryData.editor) + " (" + entryData.year + "). " + entryData.title + ". " +
+        ((entryData.howpublished) ? entryData.howpublished + ". " : "") +
+        ((entryData.note) ? entryData.note + "." : "");
+    },
+    mastersthesis: function(entryData) {
+      return this.authors2html(entryData.author) + ".<br/>" +
+        "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/><em>" + entryData.type + ", " + entryData.note + ". " + entryData.school + "</em>.";
+    },
+    techreport: function(entryData) {
+      return this.authors2html(entryData.author) + ".<br/>" +
+        "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/>" + entryData.type + " " + entryData.number + ". " + entryData.institution + ". " + entryData.pagetotal + "pp.";
+    },
+    book: function(entryData) {
+      return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+        " <em>" + entryData.title + "<\/em>, " +
+        entryData.publisher + ", " + entryData.year +
+        ((entryData.issn) ? ", ISBN: " + entryData.issn + "." : ".");
+    },
+    inbook: function(entryData) {
+      return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+        entryData.chapter + " in <em>" + entryData.title + "<\/em>, " +
+        ((entryData.editor) ? " Edited by " +  this.authors2html(entryData.editor) + ", " : "") +
+        entryData.publisher + ", pp. " + entryData.pages + "" +
+        ((entryData.series) ? ", <em>" + entryData.series + "<\/em>" : "") +
+        ((entryData.volume) ? ", Vol. " + entryData.volume + "" : "") +
+        ((entryData.issn) ? ", ISBN: " + entryData.issn + "" : "") +
+        ".";
+    },
+    proceedings: function(entryData) {
+            return "Sous la dir. de " + this.authors2html(entryData.editor) + " (" + entryData.year + "). " +
                 " <em>" + entryData.title + ".<\/em>" +
                 ((entryData.volume)?", Vol. " + entryData.volume + "":"") +
                 ((entryData.address)?", " + entryData.address:"") + ". " +
@@ -239,33 +239,32 @@ var bibtexify = (function($) {
             'manual': 10,
             'techreport': 20,
             'mastersthesis': 30,
-            'inproceedings': 40,
+            'conference': 40,
             'incollection': 50,
-            'proceedings': 60,
-            'conference': 70,
+            'inproceedings': 60,
+            'proceedings': 70,
             'article': 80,
             'phdthesis': 90,
             'inbook': 100,
-            'proceedings': 105,
             'book': 110,
-            'unpublished': 120
-        },
+            'unpublished': 0
+        },  // Conference est utilisé pour les workshop, donc de poids plus faible que inproceedings, utilisé pour les conférences.
         // labels used for the different types of entries
         labels: {
             'article': 'Journal',
             'book': 'Book',
-            'conference': 'Conference',
+            'conference': '<em>Workshop</em>',
             'inbook': 'Book chapter',
-            'incollection': 'In Collection',
-            'inproceedings': 'Conference',
+            'incollection': '',
+            'inproceedings': 'Conférence',
             'manual': 'Manual',
-            'mastersthesis': 'Thesis',
+            'mastersthesis': 'Mémoire',
             'misc': 'Misc',
-            'phdthesis': 'PhD Thesis',
-            'proceedings': 'Conference proceeding',
-            'techreport': 'Technical report',
-            'unpublished': 'Unpublished'}
-    };
+            'phdthesis': 'Thèse',
+            'proceedings': 'Édition',
+            'techreport': 'Rapport de recherche',
+            'unpublished': 'Soumis'
+        };
     // format a phd thesis similarly to masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
@@ -326,9 +325,16 @@ var bibtexify = (function($) {
         };
         var table = this.$pubTable.dataTable($.extend({ 'aaData': bibentries,
                               'aaSorting': this.options.sorting,
-                              'aoColumns': [ { "sTitle": "Year" },
-                                             { "sTitle": "Type", "sType": "type-sort", "asSorting": [ "desc", "asc" ] },
-                                             { "sTitle": "Publication", "bSortable": false }],
+                              'aoColumns': [{
+        "sTitle": "Année"
+      }, {
+        "sTitle": "Type",
+        "sType": "type-sort",
+        "asSorting": ["desc", "asc"]
+      }, {
+        "sTitle": "Description",
+        "bSortable": false
+      }],
                               'bPaginate': false
                             }, this.options.datatable));
         if (this.options.visualization) {
