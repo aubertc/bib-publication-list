@@ -275,8 +275,25 @@ var bibtexify = (function($) {
             'phdthesis': 'Thèse',
             'proceedings': 'Édition',
             'techreport': 'Rapport de recherche',
-            'unpublished': 'Soumis'}
-        };
+            'unpublished': 'Soumis'
+        }
+        /*
+         *         labels: {
+            'article': 'Journal',
+            'book': 'Book',
+            'conference': 'Conference',
+            'inbook': 'Book chapter',
+            'incollection': 'In Collection',
+            'inproceedings': 'Conference',
+            'manual': 'Manual',
+            'mastersthesis': 'Thesis',
+            'misc': 'Misc',
+            'phdthesis': 'PhD Thesis',
+            'proceedings': 'Conference proceeding',
+            'techreport': 'Technical report',
+            'unpublished': 'Unpublished'}
+            */
+    };
     // format a phd thesis similarly to masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
