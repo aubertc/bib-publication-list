@@ -260,7 +260,7 @@ var bibtexify = (function($) {
             'inbook': 100,
             'book': 110,
             'unpublished': 0
-        }, // Conference est utilisé pour les workshop, donc de poids plus faible que inproceedings, utilisé pour les conférences
+        }, // Conference is used for workshops, so their weight is lighter than inproceedings, which is used for conferences.
         // labels used for the different types of entries
         labels: {
             'article': 'Journal',
@@ -275,9 +275,8 @@ var bibtexify = (function($) {
             'phdthesis': 'Thèse',
             'proceedings': 'Édition',
             'techreport': 'Rapport de recherche',
-            'unpublished': 'Soumis'
-        }
-    };
+            'unpublished': 'Soumis'}
+        };
     // format a phd thesis similarly to masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
@@ -490,13 +489,16 @@ var bibtexify = (function($) {
     //              on formatting.
     //   - bib2html: Can be used to override any of the functions or properties of
     //               the bib2html object. See above, starting around line 40.
+    //   - lang : Used to specify language. Now support "fr" and "en", for French
+    //            and English (default).
     return function(bibsrc, bibElemId, opts) {
         var options = $.extend({}, {
                 'visualization': true,
                 'sorting': [
                     [0, "desc"],
                     [1, "desc"]
-                ]
+                ],
+                'lang':'fr' // change to 'en' or simply remove for English
             },
             opts);
         var $pubTable = $("#" + bibElemId + " table").addClass("bibtable").addClass("display");
