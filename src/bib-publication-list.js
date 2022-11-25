@@ -117,6 +117,9 @@ var bibtexify = (function($) {
                     if (entryData.archiveprefix == "hal") {
                         archiveurl = 'href="https://hal.archives-ouvertes.fr/';
                     }
+                    if (entryData.archiveprefix == "handle"){
+                        archiveurl = 'href="https://hdl.handle.net/';
+                    }
                     itemStr += ' (<a title="Version archivée sur ' + entryData.archiveprefix + '."' + archiveurl +
                         entryData.eprint + '">' + entryData.archiveprefix + '<\/a>)';
                 }
@@ -177,69 +180,69 @@ var bibtexify = (function($) {
         },
         // helper functions for formatting different types of bibtex entries
         inproceedings: function(entryData) {
-            return this.authors2html(entryData.author) + ".<br/>" +
-                "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/>" +
-                ((entryData.type) ? entryData.type : "" +
-                    "In <em>" + entryData.booktitle +
-                    ". Sous la dir. de " + this.authors2html(entryData.editor) + ". " +
-                    "T. " + entryData.volume + ". " +
-                    entryData.series + ", pp. " + entryData.pages +
-                    ((entryData.address) ? ", " + entryData.address : "") + ".<\/em>");
+            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+                entryData.title + ". In <em>" + entryData.booktitle +
+                ((entryData.pages)?", pp. " + entryData.pages:"") +
+                ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
         },
         incollection: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". Dans " +
-                ((entryData.editor) ? "" + this.authors2html(entryData.editor) + ", editeur, " : "") +
+                entryData.title + ". In " +
+                ((entryData.editor)?"" + this.authors2html(entryData.editor) + ", editor, ":"") +
                 "<em>" + entryData.booktitle +
-                ((entryData.pages) ? ", pp. " + entryData.pages : "") +
-                ((entryData.address) ? ", " + entryData.address : "") + ".<\/em>";
+                ((entryData.pages)?", pp. " + entryData.pages:"") +
+                ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
         },
         article: function(entryData) {
-            return this.authors2html(entryData.author) + ".<br/>" +
-                "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/><em>" + entryData.journal + ((entryData.volume) ? ", vol. " + entryData.volume : "") + ((entryData.number) ? "(" + entryData.number + ")" : "") + ((entryData.pages) ? ", pp. " + entryData.pages : "") + ". " + ((entryData.address) ? entryData.address + "." : "") + "<\/em>" + ((entryData.pubstate) ? entryData.pubstate : "");
-        },
-        unpublished: function(entryData) {
-            return this.authors2html(entryData.author) + ".<br/>" +
-                "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/><em>" + entryData.pubstate + ((entryData.pages) ? ", pp. " + entryData.pages : "") + ". " + "<\/em>"
+            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+                entryData.title + ". <em>" + entryData.journal + ", " + entryData.volume +
+                ((entryData.number)?"(" + entryData.number + ")":"")+ ", " +
+                ((entryData.pages)?"pp. " + entryData.pages:"") +
+                ((entryData.address)?entryData.address + ".":"") + "<\/em>";
         },
         misc: function(entryData) {
-            return this.authors2html(entryData.author || entryData.editor) + " (" + entryData.year + "). " + entryData.title + ". " +
-                ((entryData.howpublished) ? entryData.howpublished + ". " : "") +
-                ((entryData.note) ? entryData.note + "." : "");
+            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+                entryData.title + ". " +
+                ((entryData.howpublished)?entryData.howpublished + ". ":"") +
+                ((entryData.note)?entryData.note + ".":"");
         },
         mastersthesis: function(entryData) {
-            return this.authors2html(entryData.author) + ".<br/>" +
-                "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/><em>" + entryData.type + ", " + entryData.note + ". " + entryData.school + "</em>.";
+            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+            entryData.title + ". " + entryData.type + ". " +
+            ((entryData.organization)?entryData.organization + ", ":"") + entryData.school + ".";
         },
         techreport: function(entryData) {
-            return this.authors2html(entryData.author) + ".<br/>" +
-                "<strong id=\"" + entryData.ids + "\">" + entryData.title + "</strong>.<br/>" + entryData.type + " " + entryData.number + ". " + entryData.institution + ". " + entryData.pagetotal + "pp.";
+            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+                entryData.title + ". " + entryData.institution + ". " +
+                ((entryData.number)?entryData.number + ". ":"") +
+                ((entryData.type)?entryData.type + ".":"");
         },
         book: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+            return this.authors2html(entryData.author || entryData.editor) + " (" + entryData.year + "). " +
                 " <em>" + entryData.title + "<\/em>, " +
                 entryData.publisher + ", " + entryData.year +
-                ((entryData.issn) ? ", ISBN: " + entryData.issn + "." : ".");
+                ((entryData.issn)?", ISBN: " + entryData.issn + ".":".");
         },
         inbook: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
                 entryData.chapter + " in <em>" + entryData.title + "<\/em>, " +
-                ((entryData.editor) ? " Edited by " + this.authors2html(entryData.editor) + ", " : "") +
-                entryData.publisher + ", pp. " + entryData.pages + "" +
-                ((entryData.series) ? ", <em>" + entryData.series + "<\/em>" : "") +
-                ((entryData.volume) ? ", Vol. " + entryData.volume + "" : "") +
-                ((entryData.issn) ? ", ISBN: " + entryData.issn + "" : "") +
+                ((entryData.editor)?" Edited by " + this.authors2html(entryData.editor) + ", ":"") +
+                entryData.publisher +
+                ((entryData.pages)?", pp. " + entryData.pages:"") +
+                ((entryData.series)?", <em>" + entryData.series + "<\/em>":"") +
+                ((entryData.volume)?", Vol. " + entryData.volume + "":"") +
+                ((entryData.issn)?", ISBN: " + entryData.issn + "":"") +
                 ".";
         },
         proceedings: function(entryData) {
-            return "Sous la dir. de " + this.authors2html(entryData.editor) + " (" + entryData.year + "). " +
+            return this.authors2html(entryData.editor) + ", editor(s) (" + entryData.year + "). " +
                 " <em>" + entryData.title + ".<\/em>" +
-                ((entryData.volume) ? ", Vol. " + entryData.volume + "" : "") +
-                ((entryData.address) ? ", " + entryData.address : "") + ". " +
-                ((entryData.organization) ? +entryData.organization : "") +
-                ((entryData.organization && entryData.publisher) ? ", " : "") +
-                (entryData.publisher ? entryData.publisher + ". " : "") +
-                (entryData.note ? entryData.note : "");
+                ((entryData.volume)?", Vol. " + entryData.volume + "":"") +
+                ((entryData.address)?", " + entryData.address:"") + ". " +
+                ((entryData.organization)? + entryData.organization:"") +
+                ((entryData.organization && entryData.publisher)?", ":"") +
+                (entryData.publisher?entryData.publisher + ". ":"") +
+                (entryData.note?entryData.note:"");
         },
         // weights of the different types of entries; used when sorting
         importance: {
