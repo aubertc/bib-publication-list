@@ -265,11 +265,11 @@ var bibtexify = (function($) {
         inproceedings: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
             "<strong " + ((entryData.ids)? "id=\"" + entryData.ids:"") + "\">" + entryData.title + "</strong>.<br/>" +
-            lang.in + ": <em>" + entryData.booktitle + 
+            lang.in + ": <em>" + entryData.booktitle + "</em>. " +
             ((entryData.editor)?
-            ((lang.dir)? lang.dir:"") + 
+            ((lang.dir)? lang.dir + " ":"") + 
              this.authors2html(entryData.editor) + 
-            ((lang.editor)? lang.editor:""): ""            )
+            ((lang.editor)? lang.editor:""): "")
             ". " + 
                 ((entryData.publisher)?entryData.publisher + ", " : "") +
                 ((entryData.pages)?"pp. " + entryData.pages:"") + // Not the cleanest, we assume that if there is a page number, then there is an address.
@@ -331,7 +331,10 @@ var bibtexify = (function($) {
                 ".";
         },
         proceedings: function(entryData) {
-            return this.authors2html(entryData.editor) + ", " + lang.editor + ".<br>" +
+            return ((entryData.editor)?
+            ((lang.dir)? lang.dir + " " :"") + 
+             this.authors2html(entryData.editor) + 
+            ((lang.editor)? lang.editor:""): "") + "<br>" + 
             "<em " + ((entryData.ids)? "id=\"" + entryData.ids:"") + "\">" + entryData.title + "</em>.<br/>" +
                 ((entryData.volume)?", Vol. " + entryData.volume + "":"") +
                 ((entryData.address)?", " + entryData.address:"") + ". " +
