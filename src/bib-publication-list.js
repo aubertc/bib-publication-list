@@ -75,9 +75,10 @@ var bibtexify = (function($) {
                  'desc': "Description",
                  'year':"Année",
                  'type':"Type",
-'in':"dans",
-'editor':"éditeur",
-'editedby': "Édité par",
+'in':"In",
+//'editor':"éditeur",
+'dir': "Sous la dir. de",
+'and':"et",
             },
             en:{
                 'sourcetex' : "Latex source code",
@@ -105,9 +106,10 @@ var bibtexify = (function($) {
                  'year':"Year",
                 'desc':"Description",
                 'type':"Type",
-                 'in': "in",
+                 'in': "In",
 'editor':"editor",
-'editedby': "Edited by",
+'dir': "Edited by",
+'and':"and",
             }
         },
         // the main function which turns the entry into HTML
@@ -152,11 +154,15 @@ var bibtexify = (function($) {
                 authorsStr += author.first +
                     (author.von ? ' ' + author.von + ' ' : ' ') +
                     author.last +
-                    " et al.";
+                    " et al";
             } else {
                 for (var index = 0; index < authorData.length; index++) {
                     if (index > 0) {
+                        if(index == authorData.length-1) // If we are at the last author
+                        {authorsStr += " " + lang.and + " " ;}
+                        else{ // Otherwise we just add a coma
                         authorsStr += ", ";
+                        }
                     }
                     author = authorData[index];
                     authorsStr += author.first +
@@ -259,14 +265,21 @@ var bibtexify = (function($) {
         inproceedings: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
             "<strong " + ((entryData.ids)? "id=\"" + entryData.ids:"") + "\">" + entryData.title + "</strong>.<br/>" +
-            lang.in + " <em>" + entryData.booktitle +
-                ((entryData.pages)?", pp. " + entryData.pages:"") +
-                ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
+            lang.in + ": <em>" + entryData.booktitle + 
+            ((entryData.editor)?
+            ((lang.dir)? lang.dir:"") + 
+             this.authors2html(entryData.editor) + 
+            ((lang.editor)? lang.editor:""): ""            )
+            ". " + 
+                ((entryData.publisher)?entryData.publisher + ", " : "") +
+                ((entryData.pages)?"pp. " + entryData.pages:"") + // Not the cleanest, we assume that if there is a page number, then there is an address.
+                ((entryData.address)?", " + entryData.address:"")
+                + ".<\/em>";
         },
         incollection: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
             "<strong " + ((entryData.ids)? "id=\"" + entryData.ids:"") + "\">" + entryData.title + "</strong>.<br/>" +
-            + lang.in + 
+            + lang.in + ": " +
                 ((entryData.editor)?"" + this.authors2html(entryData.editor) + ", " + lang.editor +", ":"") +
                 "<em>" + entryData.booktitle +
                 ((entryData.pages)?", pp. " + entryData.pages:"") +
@@ -275,7 +288,7 @@ var bibtexify = (function($) {
         article: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
             "<strong " + ((entryData.ids)? "id=\"" + entryData.ids:"") + "\">" + entryData.title + "</strong>.<br/>" + 
-            "<em>" + entryData.journal + ", " + entryData.volume +
+            lang.in + ": <em>" + entryData.journal + ", " + entryData.volume +
                 ((entryData.number)?"(" + entryData.number + ")":"")+ ", " +
                 ((entryData.pages)?"pp. " + entryData.pages:"") +
                 ((entryData.address)?entryData.address + ".":"") + "<\/em>";
@@ -309,7 +322,7 @@ var bibtexify = (function($) {
             return this.authors2html(entryData.author) + ".<br>" +
             "<strong " + ((entryData.ids)? "id=\"" + entryData.ids:"") + "\">" + entryData.chapter + "</strong>.<br/>" +
                 lang.in + " <em>" + entryData.title + "<\/em>, " +
-                ((entryData.editor)? " " + lang.editedby + " " + this.authors2html(entryData.editor) + ", ":"") +
+                ((entryData.editor)? " " + lang.dir + " " + this.authors2html(entryData.editor) + ", ":"") +
                 entryData.publisher +
                 ((entryData.pages)?", pp. " + entryData.pages:"") +
                 ((entryData.series)?", <em>" + entryData.series + "<\/em>":"") +
