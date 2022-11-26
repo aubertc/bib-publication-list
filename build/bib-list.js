@@ -1962,8 +1962,76 @@ var bibtexify = (function($) {
     };
     // helper functions to turn a single bibtex entry into HTML
     var bib2html = {
+        lang: {
+            fr: {
+                'sourcetex': "Source code LaTeX",
+                'missing' : "Manquant",
+                'pdfversion': "Version PDF",
+                'online': "Cet article en ligne",
+                'doi':"Digital Object Identifier",
+                'archived':"Version archivée sur",
+                 'close':"Fermer",
+                'tweet':"Tweeter cet article",
+                'article':"Journal",
+                'book':"Book",
+                'conference':"<em>Workshop</em>",
+                'inbook':"Book chapter",
+                'incollection':"",
+                'inproceedings':"Conférence",
+                'manual':"Manual",
+                'mastersthesis':"Mémoire",
+                'misc':"Misc",
+                'phdthesis':"Thèse",
+                'proceedings':"Édition",
+                'techreport':"Rapport de recherche",
+                'unpublished':"Soumis",
+                 'future':"À paraître",
+                 'desc': "Description",
+                 'year':"Année",
+                 'type':"Type",
+            },
+            en:{
+                'sourcetex' : "Latex source code",
+                 'missing' : "Missing",
+                 'pdfversion': "PDF version",
+                 'online': "This article online",
+                 'doi':"Digital Object Identifier",
+                 'archived':"Version archied on",
+                 'close':"Close",
+                'tweet':"Tweet this article",
+                'article':"Journal",
+                'book':"Book",
+                'conference':"Conference",
+                'inbook':"Book chapter",
+                'incollection':"In Collection",
+                'inproceedings':"Conference",
+                'manual':"Manual",
+                'mastersthesis':"Thesis",
+                'misc':"Misc",
+                'phdthesis':"PhD Thesis",
+                'proceedings':"Conference proceeding",
+                'techreport':"Technical report",
+                'unpublished':"Unpublished",
+                 'future':"To Appear",
+                 'year':"Year",
+                'desc':"Description",
+                'type':"Type",
+            }
+        },
         // the main function which turns the entry into HTML
         entry2html: function(entryData, bib) {
+            // We begin by fixing the lang value to the appropriate language:
+            if(bib.options.lang == 'fr'){
+                lang = bib2html.lang.fr;
+            }
+            else if(bib.options.lang == 'en'){
+                    lang = bib2html.lang.en;
+            }
+            else{
+                alert("This language is not supported yet. Defaulting to English.");
+                lang = bib2html.lang.en;
+            }
+//            alert(lang.online);
             var type = entryData.entryType.toLowerCase();
             // default to type misc if type is unknown
             if (array_keys(bib2html).indexOf(type) === -1) {
@@ -1976,9 +2044,10 @@ var bibtexify = (function($) {
             if (bib.options.tweet && entryData.url) {
                 itemStr += bib2html.tweet(entryData, bib);
             }
-            return itemStr.replace(/undefined[,.]?/g,
-                '<span class="undefined">missing<\/span>');
+        return itemStr.replace(/undefined[,.]?/g,
+                '<span class="undefined">'+lang.missing+'<\/span>');
         },
+  
         // converts the given author data into HTML
         authors2html: function(authorData) {
             var authorsStr = '';
@@ -2009,14 +2078,14 @@ var bibtexify = (function($) {
         links: function(entryData) {
             var itemStr = '';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
-                itemStr += ' (<a title="Version PDF." href="' +
+                itemStr += ' (<a title="' + lang.pdfversion + '." href="' +
                     entryData.url + '">pdf<\/a>)';
             } else if (entryData.url) {
-                itemStr += ' (<a title="This article online" target="_blank" href="' + entryData.url +
+                itemStr += ' (<a title="' + lang.online + '"  href="' + entryData.url +
                     '">link<\/a>)';
             }
             if (entryData.doi) {
-                itemStr += ' (<a title="Digital Object Identifier." href="http://dx.doi.org/' +
+                itemStr += ' (<a title="' + lang.doi + '." href="http://dx.doi.org/' +
                     entryData.doi + '">doi<\/a>)';
             }
             if (entryData.archiveprefix) {
@@ -2034,12 +2103,12 @@ var bibtexify = (function($) {
                     if (entryData.archiveprefix == "handle"){
                         archiveurl = 'href="https://hdl.handle.net/';
                     }
-                    itemStr += ' (<a title="Version archivée sur ' + entryData.archiveprefix + '."' + archiveurl +
+                    itemStr += ' (<a title="' + lang.archived + '"' + entryData.archiveprefix + '."' + archiveurl +
                         entryData.eprint + '">' + entryData.archiveprefix + '<\/a>)';
                 }
             }
             if (entryData.file) {
-                itemStr += ' (<a title="Code source LaTeX." href="' + entryData.file + '">source<\/a>)';
+                itemStr += ' (<a title=' + lang.sourcetex + ' href="' + entryData.file + '">source<\/a>)';
             }
             return itemStr;
         },
@@ -2048,7 +2117,7 @@ var bibtexify = (function($) {
             var itemStr = '';
             itemStr += ' (<a title="This article as BibTeX" href="#" class="biblink">' +
                 'bib</a>)<div class="bibinfo hidden">';
-            itemStr += '<a href="#" class="bibclose" title="Close">x</a><pre>';
+            itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">x</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
             $.each(entryData, function(key, value) {
                 if (key == 'author') {
@@ -2068,11 +2137,13 @@ var bibtexify = (function($) {
             return itemStr;
         },
         // generates the twitter link for the entry
+        // this should really be replaced by a mastodon link ;-)
         tweet: function(entryData, bib) {
             // url, via, text
-            var itemStr = ' (<a title="Tweet this article" href="http://twitter.com/share?url=';
+            var itemStr = ' (<a  href="http://twitter.com/share?url=';
             itemStr += entryData.url;
             itemStr += '&via=' + bib.options.tweet;
+            /*
             itemStr += '&text=';
             var splitName = function(wholeName) {
                 var spl = wholeName.split(' ');
@@ -2089,7 +2160,8 @@ var bibtexify = (function($) {
                 itemStr += uriencode(splitName(auth[0].last) + " et al");
             }
             itemStr += ": " + uriencode(entryData.title);
-            itemStr += '" target="_blank">tweet</a>)';
+            */
+            itemStr += '">tweet</a>)';
             return itemStr;
         },
         // helper functions for formatting different types of bibtex entries
@@ -2158,6 +2230,7 @@ var bibtexify = (function($) {
                 (entryData.publisher?entryData.publisher + ". ":"") +
                 (entryData.note?entryData.note:"");
         },
+
         // weights of the different types of entries; used when sorting
         importance: {
             'TITLE': 9999,
@@ -2174,45 +2247,12 @@ var bibtexify = (function($) {
             'inbook': 100,
             'book': 110,
             'unpublished': 0
-        }, // Conference is used for workshops, so their weight is lighter than inproceedings, which is used for conferences.
-        // labels used for the different types of entries
-        // french:
-        labelsfr: {
-            'article': 'Journal',
-            'book': 'Book',
-            'conference': '<em>Workshop</em>',
-            'inbook': 'Book chapter',
-            'incollection': '',
-            'inproceedings': 'Conférence',
-            'manual': 'Manual',
-            'mastersthesis': 'Mémoire',
-            'misc': 'Misc',
-            'phdthesis': 'Thèse',
-            'proceedings': 'Édition',
-            'techreport': 'Rapport de recherche',
-            'unpublished': 'Soumis'
-            },
-        // english
-        labelsen: {
-            'article': 'Journal',
-            'book': 'Book',
-            'conference': 'Conference',
-            'inbook': 'Book chapter',
-            'incollection': 'In Collection',
-            'inproceedings': 'Conference',
-            'manual': 'Manual',
-            'mastersthesis': 'Thesis',
-            'misc': 'Misc',
-            'phdthesis': 'PhD Thesis',
-            'proceedings': 'Conference proceeding',
-            'techreport': 'Technical report',
-            'unpublished': 'Unpublished'
-        }
-        };
+        } // Conference is used for workshops, so their weight is lighter than inproceedings, which is used for conferences.
+     };
     // format a phd thesis similarly to masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
-    bib2html.conference = bib2html.inproceedings;
+    // bib2html.conference = bib2html.inproceedings;
 
     // event handlers for the bibtex links
     var EventHandlers = {
@@ -2247,17 +2287,12 @@ var bibtexify = (function($) {
         for (var index = 0; index < len; index++) {
             var item = bibtex.data[index];
             if (!item.year) {
-                item.year = this.options.defaultYear || "To Appear";
+                item.year = this.options.defaultYear || lang.future;
             }
             try {
                 var html = bib2html.entry2html(item, this);
-                if(options.lang == 'fr'){
-                bibentries.push([item.year, bib2html.labelsfr[item.entryType], html]);
-                entryTypes[bib2html.labelsfr[item.entryType]] = item.entryType;
-                }else if (options.lang == 'en'){
-                bibentries.push([item.year, bib2html.labelsen[item.entryType], html]);         
-                entryTypes[bib2html.labelsen[item.entryType]] = item.entryType;                  
-                }
+                bibentries.push([item.year, lang[item.entryType], html]);
+                entryTypes[lang[item.entryType]] = item.entryType;
                 this.updateStats(item);
             } catch (e) {
                 console.error('Failed to process entry: ', item);
@@ -2277,13 +2312,14 @@ var bibtexify = (function($) {
             'aaData': bibentries,
             'aaSorting': this.options.sorting,
             'aoColumns': [{
-                "sTitle": "Année"
-            }, {
+                        "sTitle": lang.year
+            },
+            {
                 "sTitle": "Type",
                 "sType": "type-sort",
                 "asSorting": ["desc", "asc"]
             }, {
-                "sTitle": "Description",
+                "sTitle": lang.desc,
                 "bSortable": false
             }],
             'bPaginate': false
@@ -2402,12 +2438,7 @@ var bibtexify = (function($) {
         var legendHtml = '';
         for (var i = 0, l = legendTypes.length; i < l; i++) {
             var legend = legendTypes[i];
-            legendHtml += '<div><span class="pub ' + legend + '"></span>' +
-             if(options.lang == 'fr'){
-                 bib2html.labelsfr[legend] + '</div>';
-                }else if (options.lang == 'en'){
-                    bib2html.labelsen[legend] + '</div>';
-                }
+            legendHtml += '<div><span class="pub ' + legend + '"></span>' + lang[legend] + '</div>';
         }
         $(chartSelector).html(statsHtml)
         if ($(legendSelector).length === 0) {
@@ -2440,7 +2471,7 @@ var bibtexify = (function($) {
                     [0, "desc"],
                     [1, "desc"]
                 ],
-                'lang':'en' // change to 'fr' for French
+                'lang':'fr' // change to 'fr' for French
             },
             opts);
         var $pubTable = $("#" + bibElemId + " table").addClass("bibtable").addClass("display");
