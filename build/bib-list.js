@@ -2176,8 +2176,7 @@ var bibtexify = (function($) {
             'unpublished': 0
         }, // Conference is used for workshops, so their weight is lighter than inproceedings, which is used for conferences.
         // labels used for the different types of entries
-        // french:
-        labelsfr: {
+        labels: {
             'article': 'Journal',
             'book': 'Book',
             'conference': '<em>Workshop</em>',
@@ -2191,9 +2190,9 @@ var bibtexify = (function($) {
             'proceedings': 'Édition',
             'techreport': 'Rapport de recherche',
             'unpublished': 'Soumis'
-            },
-        // english
-        labelsen: {
+        }
+        /*
+         *         labels: {
             'article': 'Journal',
             'book': 'Book',
             'conference': 'Conference',
@@ -2206,9 +2205,9 @@ var bibtexify = (function($) {
             'phdthesis': 'PhD Thesis',
             'proceedings': 'Conference proceeding',
             'techreport': 'Technical report',
-            'unpublished': 'Unpublished'
-        }
-        };
+            'unpublished': 'Unpublished'}
+            */
+    };
     // format a phd thesis similarly to masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
@@ -2251,13 +2250,8 @@ var bibtexify = (function($) {
             }
             try {
                 var html = bib2html.entry2html(item, this);
-                if(options.lang == 'fr'){
-                bibentries.push([item.year, bib2html.labelsfr[item.entryType], html]);
-                entryTypes[bib2html.labelsfr[item.entryType]] = item.entryType;
-                }else if (options.lang == 'en'){
-                bibentries.push([item.year, bib2html.labelsen[item.entryType], html]);         
-                entryTypes[bib2html.labelsen[item.entryType]] = item.entryType;                  
-                }
+                bibentries.push([item.year, bib2html.labels[item.entryType], html]);
+                entryTypes[bib2html.labels[item.entryType]] = item.entryType;
                 this.updateStats(item);
             } catch (e) {
                 console.error('Failed to process entry: ', item);
@@ -2402,12 +2396,7 @@ var bibtexify = (function($) {
         var legendHtml = '';
         for (var i = 0, l = legendTypes.length; i < l; i++) {
             var legend = legendTypes[i];
-            legendHtml += '<div><span class="pub ' + legend + '"></span>' +
-             if(options.lang == 'fr'){
-                 bib2html.labelsfr[legend] + '</div>';
-                }else if (options.lang == 'en'){
-                    bib2html.labelsen[legend] + '</div>';
-                }
+            legendHtml += '<div><span class="pub ' + legend + '"></span>' + bib2html.labels[legend] + '</div>';
         }
         $(chartSelector).html(statsHtml)
         if ($(legendSelector).length === 0) {
@@ -2440,7 +2429,7 @@ var bibtexify = (function($) {
                     [0, "desc"],
                     [1, "desc"]
                 ],
-                'lang':'en' // change to 'fr' for French
+                'lang':'fr' // change to 'en' or simply remove for English
             },
             opts);
         var $pubTable = $("#" + bibElemId + " table").addClass("bibtable").addClass("display");
