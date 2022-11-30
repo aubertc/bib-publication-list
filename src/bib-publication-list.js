@@ -584,7 +584,7 @@ var bibtexify = (function($) {
                     [0, "desc"],
                     [1, "desc"]
                 ],
-                'lang':'fr' // change to 'fr' for French
+                'lang':'en' // change to 'fr' for French
             },
             opts);
         var $pubTable = $("#" + bibElemId + " table").addClass("bibtable").addClass("display");
