@@ -1968,77 +1968,75 @@ var bibtexify = (function($) {
         // for the tables.
         lang: {
             fr: {
-                'sourcetex': "Source code LaTeX",
-                'missing': "Manquant",
-                'pdfversion': "Version PDF",
-                'online': "Cet article en ligne",
-                'doi': "Digital Object Identifier",
+                'and': "et",
                 'archived': "Version archivée sur",
-                'close': "Fermer",
-                'tweet': "Tweeter cet article",
                 'article': "Journal",
                 'book': "Book",
+                'close': "Fermer",
                 'conference': "<em>Workshop</em>",
+                'desc': "Description",
+                'dir': "Sous la dir. de",
+                'doi': "Digital Object Identifier",
+                'future': "À paraître",
+                'in': "In",
                 'inbook': "Book chapter",
                 'incollection': "",
+                'info': 'Affichage de _START_ à _END_ sur _TOTAL_ entrées',
+                'infoEmpty': 'Affichage de 0 à 0 sur 0 entrées',
+                'infoFiltered': '(filtrées depuis un total de _MAX_ entrées)',
                 'inproceedings': "Conférence",
                 'manual': "Manual",
                 'mastersthesis': "Mémoire",
                 'misc': "Misc",
+                'missing': "Manquant",
+                'online': "Cet article en ligne",
+                'pdfversion': "Version PDF",
                 'phdthesis': "Thèse",
                 'proceedings': "Édition",
+                'search':'Rechercher :',
+                'sourcetex': "Source code LaTeX",
                 'techreport': "Rapport de recherche",
-                'unpublished': "Soumis",
-                'future': "À paraître",
-                'desc': "Description",
-                'year': "Année",
+                'tweet': "Tweeter cet article",
                 'type': "Type",
-                'in': "In",
-                //'editor':"éditeur",
-                'dir': "Sous la dir. de",
-                'and': "et",
-                 'search':'Rechercher :',
-'zeroRecords':'Aucune entrée correspondante trouvée',
-'info': 'Affichage de _START_ à _END_ sur _TOTAL_ entrées',
-'infoEmpty': 'Affichage de 0 à 0 sur 0 entrées',
-'infoFiltered': '(filtrées depuis un total de _MAX_ entrées)',
+                'unpublished': "Soumis",
+                'year': "Année",
+                'zeroRecords':'Aucune entrée correspondante trouvée'
             },
             en: {
-                'sourcetex': "Latex source code",
-                'missing': "Missing",
-                'pdfversion': "PDF version",
-                'online': "This article online",
-                'doi': "Digital Object Identifier",
+                'and': "and",
                 'archived': "Version archied on",
-                'close': "Close",
-                'tweet': "Tweet this article",
                 'article': "Journal",
                 'book': "Book",
+                'close': "Close",
                 'conference': "Conference",
+                'desc': "Description",
+                'dir': "Edited by",
+                'doi': "Digital Object Identifier",
+                'editor': "editor",
+                'future': "To Appear",
+                'in': "In",
                 'inbook': "Book chapter",
                 'incollection': "In Collection",
+                'info': 'Showing page _PAGE_ of _PAGES_',
+                'infoEmpty': 'No records available',
+                'infoFiltered': '(filtered from _MAX_ total records)',
                 'inproceedings': "Conference",
                 'manual': "Manual",
                 'mastersthesis': "Thesis",
                 'misc': "Misc",
+                'missing': "Missing",
+                'online': "This article online",
+                'pdfversion': "PDF version",
                 'phdthesis': "PhD Thesis",
                 'proceedings': "Conference proceeding",
+                'search':'Search:',
+                'sourcetex': "Latex source code",
                 'techreport': "Technical report",
-                'unpublished': "Unpublished",
-                'future': "To Appear",
-                'year': "Year",
-                'desc': "Description",
+                'tweet': "Tweet this article",
                 'type': "Type",
-                'in': "In",
-                'editor': "editor",
-                'dir': "Edited by",
-                'and': "and",
-                 'search':'Search:',
-'zeroRecords': 'Nothing found - sorry',
-'info': 'Showing page _PAGE_ of _PAGES_',
-'infoEmpty': 'No records available',
-'infoFiltered': '(filtered from _MAX_ total records)',
-
+                'unpublished': "Unpublished",
+                'year': "Year",
+                'zeroRecords': 'Nothing found - sorry'
             }
         },
         // the main function which turns the entry into HTML
@@ -2052,7 +2050,6 @@ var bibtexify = (function($) {
                 alert("This language is not supported yet. Defaulting to English.");
                 lang = bib2html.lang.en;
             }
-            //            alert(lang.online);
             var type = entryData.entryType.toLowerCase();
             // default to type misc if type is unknown
             if (array_keys(bib2html).indexOf(type) === -1) {
@@ -2328,7 +2325,14 @@ var bibtexify = (function($) {
         for (var index = 0; index < len; index++) {
             var item = bibtex.data[index];
             if (!item.year) {
-                item.year = this.options.defaultYear || lang.future;
+                if (this.options.lang == 'fr') {
+                   item.year = bib2html.lang.fr.future;
+                } else if (this.options.lang == 'en') {
+                   item.year = bib2html.lang.en.future;
+            } else {
+                alert("This language is not supported yet. Defaulting to English.");
+                item.year = bib2html.lang.en.future;
+            }
             }
             try {
                 var html = bib2html.entry2html(item, this);
