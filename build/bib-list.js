@@ -2144,14 +2144,24 @@ var bibtexify = (function($) {
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
             $.each(entryData, function(key, value) {
                 if (key == 'author') {
-                    itemStr += '  author = { ';
+                    itemStr += '  author = {';
+                    for (var index = 0; index < value.length; index++) {
+                        if (index > 0) {
+                            itemStr += " and ";
+                        }
+                        itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : ' ') +
+                            value[index].last +  ", "+ value[index].first;
+                    }
+                    itemStr += '},\n';
+                } else if (key == 'editor') {
+                    itemStr += '  editor = {';
                     for (var index = 0; index < value.length; index++) {
                         if (index > 0) {
                             itemStr += " and ";
                         }
                         itemStr += value[index].last;
                     }
-                    itemStr += ' },\n';
+                    itemStr += '},\n';
                 } else if (key != 'entryType' && key != 'cite') {
                     itemStr += '  ' + key + " = {" + value + "},\n";
                 }
