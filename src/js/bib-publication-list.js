@@ -425,14 +425,17 @@ var bibtexify = (function($) {
         for (var index = 0; index < len; index++) {
             var item = bibtex.data[index];
             if (!item.year) {
-                if (this.options.lang == 'fr') {
-                    item.year = bib2html.lang.fr.future;
-                } else if (this.options.lang == 'en') {
-                    item.year = bib2html.lang.en.future;
-                } else {
-                    alert("This language is not supported yet. Defaulting to English.");
-                    item.year = bib2html.lang.en.future;
-                }
+                if(this.options.defaultYear){item.year = this.options.defaultYear;}
+                else{
+                    if (this.options.lang == 'fr') {
+                        item.year = bib2html.lang.fr.future;
+                    } else if (this.options.lang == 'en') {
+                        item.year = bib2html.lang.en.future;
+                    } else {
+                        alert("This language is not supported yet. Defaulting to English.");
+                        item.year = bib2html.lang.en.future;
+                    }
+                }   
             }
             try {
                 var html = bib2html.entry2html(item, this);
