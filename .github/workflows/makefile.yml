@@ -22,3 +22,12 @@ jobs:
 
     - name: Compile & Minimify 
       run: make min
+      
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+          files: |
+            build/bib-list.css
+            build/bib-list.js
+            build/bib-list.min.css
+            build/bib-list.min.js
