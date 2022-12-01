@@ -4,11 +4,9 @@
 <html>
 	<head>
 		<title>Testing bibtex</title>
-        <link rel="stylesheet" href="../../build/bib-list.js"/>
 		<link rel="stylesheet" href="../../build/bib-list.css"/>
 		<!-- minified versions: -->
 		<!--
-        <link rel="stylesheet" href="../../build/bib-list.min.js"/>
 		<link rel="stylesheet" href="../../build/bib-list.min.css"/>
 		-->
     </head>
@@ -21,13 +19,13 @@
     </noscript>
 
     <!--Automatic graph positioning-->
-    <div id="bib-pubplication-list">
+    <div id="bib-publication-list">
       <table></table>
     </div>
 
     <!--Custom graph positioning-->
     <!--
-    <div id="bib-pubplication-list">
+    <div id="bib-publication-list">
       <div class="bibchart-container">
         <div class="bibchart">
             
@@ -580,10 +578,15 @@
 }
 </pre>
     <!-- We load jquery first: -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
-        crossorigin="anonymous"></script>
+    <script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
+			  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+			  crossorigin="anonymous"></script>
     <!-- Then we load our script: -->
     <script type="text/javascript" src="../../build/bib-list.js"></script>
+    <!-- Minified version: -->
+    <!--
+    <script type="text/javascript" src="../../build/bib-list.min.js"></script>
+    -->
     <!-- Finally, we call bibtexify with the correct options:
          - id of the pre element containing the bibliography,
          - id of the div element containing the table that will display the references,
@@ -591,7 +594,7 @@
     -->
     <script type="text/javascript">
 		    $(document).ready(function() {
-        	bibtexify("#bibtex", "bib-pubplication-list", {'tweet': 'vkaravir', 'lang': 'en'});
+        	bibtexify("#bibtex", "bib-publication-list", {'tweet': 'vkaravir', 'lang': 'en'});
     		});
 		</script>
 	</body>
