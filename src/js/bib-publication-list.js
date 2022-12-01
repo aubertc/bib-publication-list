@@ -48,6 +48,10 @@ var bibtexify = (function($) {
     };
     // helper functions to turn a single bibtex entry into HTML
     var bib2html = {
+        // We define the required variables for French and English.
+        // Some of the French translation was inspired by
+        // https://datatables.net/plug-ins/i18n/French.html
+        // for the tables.
         lang: {
             fr: {
                 'sourcetex': "Source code LaTeX",
@@ -79,6 +83,11 @@ var bibtexify = (function($) {
                 //'editor':"éditeur",
                 'dir': "Sous la dir. de",
                 'and': "et",
+                 'search':'Rechercher :',
+'zeroRecords':'Aucune entrée correspondante trouvée',
+'info': 'Affichage de _START_ à _END_ sur _TOTAL_ entrées',
+'infoEmpty': 'Affichage de 0 à 0 sur 0 entrées',
+'infoFiltered': '(filtrées depuis un total de _MAX_ entrées)',
             },
             en: {
                 'sourcetex': "Latex source code",
@@ -110,6 +119,12 @@ var bibtexify = (function($) {
                 'editor': "editor",
                 'dir': "Edited by",
                 'and': "and",
+                 'search':'Search:',
+'zeroRecords': 'Nothing found - sorry',
+'info': 'Showing page _PAGE_ of _PAGES_',
+'infoEmpty': 'No records available',
+'infoFiltered': '(filtered from _MAX_ total records)',
+
             }
         },
         // the main function which turns the entry into HTML
@@ -435,6 +450,13 @@ var bibtexify = (function($) {
                     "bSortable": false
                 }
             ],
+             'language': {
+            "search": lang.search,
+            "zeroRecords": lang.zeroRecords,
+                "info": lang.info,
+            "infoEmpty": lang.infoEmpty,
+            "infoFiltered": lang.infoFiltered
+            },
             'bPaginate': false
         }, this.options.datatable));
         if (this.options.visualization) {

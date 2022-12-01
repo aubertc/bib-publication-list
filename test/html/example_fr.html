@@ -4,11 +4,9 @@
 <html>
 	<head>
 		<title>Testons bibtex</title>
-        <link rel="stylesheet" href="../../build/bib-list.js"/>
 		<link rel="stylesheet" href="../../build/bib-list.css"/>
 		<!-- minified versions: -->
 		<!--
-        <link rel="stylesheet" href="../../build/bib-list.min.js"/>
 		<link rel="stylesheet" href="../../build/bib-list.min.css"/>
 		-->
     </head>
@@ -585,6 +583,10 @@
 			  crossorigin="anonymous"></script>
     <!-- Then we load our script: -->
     <script type="text/javascript" src="../../build/bib-list.js"></script>
+    <!-- Minified version: -->
+    <!--
+    <script type="text/javascript" src="../../build/bib-list.min.js"></script>
+    -->
     <!-- Finally, we call bibtexify with the correct options:
          - id of the pre element containing the bibliography,
          - id of the div element containing the table that will display the references,
@@ -592,7 +594,7 @@
     -->
     <script type="text/javascript">
 		    $(document).ready(function() {
-        	bibtexify("#bibtex", "bib-publication-list", {'lang': 'fr'});
+        	bibtexify("#bibtex", "bib-publication-list", {'tweet': 'vkaravir', 'lang': 'fr'});
     		});
 		</script>
 	</body>
