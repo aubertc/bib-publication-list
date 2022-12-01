@@ -2128,7 +2128,7 @@ var bibtexify = (function($) {
             var itemStr = '';
             itemStr += ' (<a title="This article as BibTeX" href="#" class="biblink">' +
                 'bib</a>)<div class="bibinfo hidden">';
-            itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">x</a><pre>';
+            itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">⨯</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
             $.each(entryData, function(key, value) {
                 if (key == 'author') {
@@ -2141,7 +2141,7 @@ var bibtexify = (function($) {
                     }
                     itemStr += ' },\n';
                 } else if (key != 'entryType' && key != 'cite') {
-                    itemStr += '  ' + key + " = { " + value + " },\n";
+                    itemStr += '  ' + key + " = {" + value + "},\n";
                 }
             });
             itemStr += "}</pre></div>";
