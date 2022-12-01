@@ -312,7 +312,7 @@ var bibtexify = (function($) {
             return this.authors2html(entryData.author) + ".<br>" +
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                 lang.in + ": <em>" + entryData.journal +
-                ((entryData.volume) ? + ", " + entryData.volume : "") + 
+                ((entryData.volume) ? ", " + entryData.volume : "") + 
                 ((entryData.number) ? "(" + entryData.number + ")" : "") + ", " +
                 ((entryData.pages) ? "pp. " + entryData.pages : "") +
                 ((entryData.address) ? entryData.address + "." : "") + "<\/em>";

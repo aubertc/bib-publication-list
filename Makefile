@@ -12,7 +12,7 @@ TARGET = build
 SOURCESJS = $(LIB)/js/BibTex-0.1.2.js $(LIB)/js/datatables.min.js $(SRC)/js/bib-publication-list.js
 SOURCECSS = $(LIB)/css/datatables.min.css $(SRC)/css/bib-publication-list.css
 
-all: build
+all: build min
 
 target_folder: 
 	@mkdir -p $(TARGET)

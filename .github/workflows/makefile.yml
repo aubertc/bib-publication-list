@@ -16,11 +16,8 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get install -y minify
     
-    - name: Compile un-compressed version
-      run: make
-
-    - name: Compile & Minimify 
-      run: make min
+    - name: Compile compressed & un-compressed versions
+      run: make all
       
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
