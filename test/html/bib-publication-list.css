@@ -61,10 +61,6 @@ span.undefined {
     height: var(--pub-height);
 }
 
-.pub:hover {
-    border-color: rgba(0, 0, 0, 0);
-}
-
 .inproceedings {
     background-color: #ccf;
 }
@@ -143,34 +139,6 @@ table.display td.center {
 
 table.display {
     margin-top: 24px;
-}
-
-.sorting_asc {
-    background: url('lib/images/sort_asc.png') no-repeat center right;
-}
-
-.sorting_desc {
-    background: url('lib/images/sort_desc.png') no-repeat center right;
-}
-
-.sorting {
-    background: url('lib/images/sort_both.png') no-repeat center right;
-}
-
-.sorting_asc_disabled {
-    background: url('lib/images/sort_asc_disabled.png') no-repeat center right;
-}
-
-.sorting_desc_disabled {
-    background: url('lib/images/sort_desc_disabled.png') no-repeat center right;
-}
-
-tr.odd {
-    background-color: #eee;
-}
-
-tr.even {
-    background-color: white;
 }
 
 div.hidden {
