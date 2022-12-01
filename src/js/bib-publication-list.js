@@ -361,7 +361,7 @@ var bibtexify = (function($) {
                     ((lang.editor) ? lang.editor : "") : "") + "<br>" +
                     "<strong id=\"" +  entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                     ((entryData.volume) ? "Vol. " + entryData.volume  : "") +
-                    ((entryData.series) ? entryData.series  : "") +
+                    ((entryData.series) ? ", " + entryData.series  : "") +
                     ((entryData.address) ? ", " + entryData.address : "") + ". " +
                     ((entryData.organization) ? +entryData.organization : "") +
                     ((entryData.organization && entryData.publisher) ? ", " : "") +
