@@ -96,6 +96,8 @@ Finally, the `bib-publication-list` needs to know the input data element and the
 
 And _voilà_!
 
+![](test/illustration/demo.png)
+
 ## Configuration Options
 
 The bibtexify function accepts an optional third parameter for configuration options. These options include:
