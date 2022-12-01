@@ -338,8 +338,8 @@ var bibtexify = (function($) {
                 entryData.publisher +
                 ((entryData.pages) ? ", pp. " + entryData.pages : "") +
                 ((entryData.series) ? ", <em>" + entryData.series + "<\/em>" : "") +
-                ((entryData.volume) ? ", Vol. " + entryData.volume + "" : "") +
-                ((entryData.issn) ? ", ISBN: " + entryData.issn + "" : "") +
+                ((entryData.volume) ? ", Vol. " + entryData.volume  : "") +
+                ((entryData.issn) ? ", ISBN: " + entryData.issn  : "") +
                 ".";
         },
         proceedings: function(entryData) {
@@ -348,7 +348,8 @@ var bibtexify = (function($) {
                     this.authors2html(entryData.editor) +
                     ((lang.editor) ? lang.editor : "") : "") + "<br>" +
                     "<strong id=\"" +  entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
-                    ((entryData.volume) ? "Vol. " + entryData.volume + "" : "") +
+                    ((entryData.volume) ? "Vol. " + entryData.volume  : "") +
+                    ((entryData.series) ? entryData.series  : "") +
                     ((entryData.address) ? ", " + entryData.address : "") + ". " +
                     ((entryData.organization) ? +entryData.organization : "") +
                     ((entryData.organization && entryData.publisher) ? ", " : "") +

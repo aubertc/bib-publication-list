@@ -2213,8 +2213,8 @@ var bibtexify = (function($) {
         article: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
-                lang.in + ": <em>" + entryData.journal + ", " +
-                ((entryData.volume) ? entryData.volume : "") + 
+                lang.in + ": <em>" + entryData.journal +
+                ((entryData.volume) ? + ", " + entryData.volume : "") + 
                 ((entryData.number) ? "(" + entryData.number + ")" : "") + ", " +
                 ((entryData.pages) ? "pp. " + entryData.pages : "") +
                 ((entryData.address) ? entryData.address + "." : "") + "<\/em>";
@@ -2252,8 +2252,8 @@ var bibtexify = (function($) {
                 entryData.publisher +
                 ((entryData.pages) ? ", pp. " + entryData.pages : "") +
                 ((entryData.series) ? ", <em>" + entryData.series + "<\/em>" : "") +
-                ((entryData.volume) ? ", Vol. " + entryData.volume + "" : "") +
-                ((entryData.issn) ? ", ISBN: " + entryData.issn + "" : "") +
+                ((entryData.volume) ? ", Vol. " + entryData.volume  : "") +
+                ((entryData.issn) ? ", ISBN: " + entryData.issn  : "") +
                 ".";
         },
         proceedings: function(entryData) {
@@ -2261,8 +2261,9 @@ var bibtexify = (function($) {
                     ((lang.dir) ? lang.dir + " " : "") +
                     this.authors2html(entryData.editor) +
                     ((lang.editor) ? lang.editor : "") : "") + "<br>" +
-                    "<em id=\"" +  entryData.cite + "\">" + entryData.title + "</em>.<br/>" +
-                    ((entryData.volume) ? "Vol. " + entryData.volume + "" : "") +
+                    "<strong id=\"" +  entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
+                    ((entryData.volume) ? "Vol. " + entryData.volume  : "") +
+                    ((entryData.series) ? entryData.series  : "") +
                     ((entryData.address) ? ", " + entryData.address : "") + ". " +
                     ((entryData.organization) ? +entryData.organization : "") +
                     ((entryData.organization && entryData.publisher) ? ", " : "") +
