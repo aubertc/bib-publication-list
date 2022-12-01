@@ -1,4 +1,9 @@
-**bib-publication-list to automatically generate an interactive HTML publication list from a BibTeX file**
+# Presentation
+
+bib-publication-list is a javascript tool to automatically generate an interactive HTML publication list from a BibTeX file.
+It uses [jQuery](http://jquery.com/), [DataTables](http://datatables.net/), and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
+
+A more static and probably better maintained alternative to this project would be, in my opinion, to [use pandoc to generate a html file from a bib file](https://tex.stackexchange.com/a/298385/34551).
 
 ## Demo
 
@@ -109,12 +114,12 @@ The minified version requires [minifier](https://www.minifier.org/).
 
 There is also an (untested!) Jakefile for building the combined and minified versions with [Jake](https://github.com/mde/jake)
 
-## Credits
+# Credits
 
 This code uses some great libraries: [jQuery](http://jquery.com/), [DataTables](http://datatables.net/),
 and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
 
-## History / Changelog
+# History / Changelog
 
 This is a fork of [bib-publication-list](https://github.com/GioBonvi/bib-publication-list), which is itself a fork of [bib-publication-list](https://github.com/vkaravir/bib-publication-list) that I created for personal use.
 
@@ -138,7 +143,6 @@ The [previous fork]](https://github.com/GioBonvi/bib-publication-list) added the
 - Some minor changes in the CSS style
 - Fixed some types of BibTex content requiring fields that are not actually required by BibTex standard
 - Introduced the use of "et al." for publications with more than 6 authors
-
 
 ## Deprecated 
 
