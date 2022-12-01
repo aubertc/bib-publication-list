@@ -95,13 +95,12 @@ The bibtexify function accepts an optional third parameter for configuration opt
 
 option | arguments
 --- | ------------
-visualization | A boolean to control addition of the visualization. Defaults to true.</td></tr>
-<tr><td>tweet</td><td>Twitter username to add Tweet links to bib items with a url field.</td></tr>
-<tr><td>sorting</td><td>Control the default sorting of the list. Defaults to `[[0, "desc"], [1, "desc"]]`. See (https://legacy.datatables.net/api#fnSort) for details on formatting.</td></tr>
-<tr><td>datatable</td><td>Pass options to the datatable library used to create the table of publications. See (https://legacy.datatables.net/api) for available options.</td></tr>
-<tr><td>defaultYear</td><td>Entries without a year will use this as year. Defaults to "To Appear".
-</tbody>
-</table>
+visualization | A boolean to control addition of the visualization. Defaults to true.
+tweet | Twitter username to add Tweet links to bib items with a url field.
+sorting | Control the default sorting of the list. Defaults to `[[0, "desc"], [1, "desc"]]`. See (https://legacy.datatables.net/api#fnSort) for details on formatting.
+datatable | Pass options to the datatable library used to create the table of publications. See (https://legacy.datatables.net/api) for available options.
+defaultYear | Entries without a year will use this as year. Defaults to "To Appear".
+lang | Language to use. Now support `en` (default) and `fr`
 
 ## Building from source
 
