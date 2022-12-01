@@ -1,3 +1,8 @@
+// This file was inherited from the previous maintainer, 
+// https://github.com/vkaravir/bib-publication-list/blob/master/Jakefile
+// and has been updated but not been tested.
+
+
 var fs = require('fs'),
   path = require('path');
 
