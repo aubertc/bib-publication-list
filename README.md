@@ -101,12 +101,13 @@ You can even use [jsdelivr](https://www.jsdelivr.com/) if you don't want to host
 
 ### Call the script
 
-Finally, the `bib-publication-list` needs to know the input data element and the output table. So, some JavaScript:
+Finally, the `bib-publication-list` needs to know the input data element and the output table (cf. [below](#configuration-options) for the configuration options).
+So, some JavaScript:
 
 ```html
 <script type="text/javascript">
     $(document).ready(function() {
-    bibtexify("#bibtex", "bib-publication-list", {'tweet': 'vkaravir', 'lang': 'en'});
+    bibtexify("#bibtex", "bib-publication-list");
     });
 </script>
 ```
@@ -126,11 +127,11 @@ The bibtexify function also accepts an optional third parameter for configuratio
 
 option | arguments
 --- | ------------
-lang | Language to use. Now support `en` (default) and `fr`
+lang | Language to use. Now support `en` (English, default) and `fr` (Français).
 visualization | A boolean to control addition of the visualization. Defaults to `true`.
 sorting | Control the default sorting of the list. Defaults to `[[0, "desc"], [1, "desc"]]`. See <https://datatables.net/reference/api/#fnSort> for details on formatting.
 datatable | Pass options to the datatable library used to create the table of publications. See <https://datatables.net/reference/api/> for available options.
-defaultYear | Entries without a year will use this as year. Defaults to "To Appear" if `lang` is `en` is selected (default), "À paraître" if `lang` is `fr`.
+defaultYear | Entries without a year will use this as year. Defaults to "To Appear" if `lang` is `en` (default), "À paraître" if `lang` is `fr`.
 
 An example of such usage would be:
 
@@ -140,13 +141,15 @@ bibtexify("#bibtex", "bib-publication-list", {'defaultYear': '2001', 'lang': 'fr
 
 ## Building from source
 
-There is a Makefile for building with make.
+There is a [Makefile](Makefile) for building with make.
 The minified version requires [minifier](https://www.minifier.org/).
 
 # Credits
 
 This code uses some great libraries: [jQuery](http://jquery.com/), [DataTables](http://datatables.net/),
-and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/)^[(This latter library could probably [be replaced](https://github.com/aubertc/bib-publication-list/issues/1) by [bibtexParseJS ](https://github.com/ORCID/bibtexParseJs) with benefits.].
+and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/)[^1].
+
+[^1]: This latter library could probably [be replaced](https://github.com/aubertc/bib-publication-list/issues/1) by [bibtexParseJS ](https://github.com/ORCID/bibtexParseJs) with benefits.
 
 # History / Changelog
 
@@ -160,8 +163,6 @@ The main changes are:
 - Improved example files,
 - Added support for French in addition to English,
 - Generally clarifying the documentation.
-
-Feel free to open issues or to reach out by email.
 
 The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the following:
 
