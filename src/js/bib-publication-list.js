@@ -236,7 +236,7 @@ var bibtexify = (function($) {
                             itemStr += " and ";
                         }
                         itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : '') +
-                            value[index].last +  (value[index].first ? ' ' + ", "+ value[index].first : '');
+                            value[index].last +  (value[index].first ?  ",  "+ value[index].first : '');                  
                     }
                     itemStr += '},\n';
                 } else if (key == 'editor') {
@@ -246,7 +246,7 @@ var bibtexify = (function($) {
                             itemStr += " and ";
                         }
                         itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : '') +
-                            value[index].last +  (value[index].first ? ' ' + ", "+ value[index].first : '');                  
+                            value[index].last +  (value[index].first ?  ",  "+ value[index].first : '');                  
                         
                     }
                     itemStr += '},\n';
