@@ -146,7 +146,7 @@ The minified version requires [minifier](https://www.minifier.org/).
 # Credits
 
 This code uses some great libraries: [jQuery](http://jquery.com/), [DataTables](http://datatables.net/),
-and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
+and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/)^[(This latter library could probably [be replaced](https://github.com/aubertc/bib-publication-list/issues/1) by [bibtexParseJS ](https://github.com/ORCID/bibtexParseJs) with benefits.].
 
 # History / Changelog
 
@@ -157,10 +157,11 @@ The main changes are:
 - [Updated](https://github.com/aubertc/bib-publication-list/commit/96fed3ad87cec534ca327c55a44a176fbb1c5e93) [DataTables](https://datatables.net/) to 1.13.1,
 - [Added support](https://github.com/aubertc/bib-publication-list/commit/4155d66a05e741443b545f0b207a51d970372d0c) for `doi` and `eprint` fields.
 - Changed some styles,
-- Added support for French in addition to English.
+- Improved example files,
+- Added support for French in addition to English,
+- Generally clarifying the documentation.
 
-This code is _poorly documented and maintained_, use at your own risk, and feel free to open issues or to reach out by email.
-You can see a demo [on my website](https://aubert.perso.math.cnrs.fr/#publicatio).
+Feel free to open issues or to reach out by email.
 
 The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the following:
 
@@ -176,7 +177,7 @@ The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the 
 ## Deprecated 
 
 It used to be the case that the bibtex could be loaded from a file.
-This feature seems to be broken now, but here is what the original author wrote:
+This feature seems to be broken now (and to have been [unreliable in the past](https://github.com/vkaravir/bib-publication-list/issues/11)) but here is what the [original author wrote](https://github.com/vkaravir/bib-publication-list#getting-started):
 
 > Personally I prefer including it in the HTML,
 > though. This way, browsers without JavaScript enabled get at least to see the bibtex instead of a blank page.
