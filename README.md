@@ -27,16 +27,18 @@ For example:
     <div id="bib-publication-list">
         <table></table>
     </div>
-    <pre id="bibtex">@article{Karavirta:JVLCTaxonomy,
-       title = {A comprehensive taxonomy of algorithm animation languages},
-       journal = {Journal of Visual Languages \& Computing},
-       volume = {20},
-       number = {1},
-       pages = {1--22},
-       year = {2010},
-       issn = {1045-926X},
-       doi = {DOI: 10.1016/j.jvlc.2009.09.001},
-       author = {Ville Karavirta and Ari Korhonen and Lauri Malmi and Thomas Naps}
+    <pre id="bibtex">
+    @inproceedings{Aubert2022FSCD,
+        editor = {Felty, Amy P.},
+        doi = {10.4230/LIPIcs.FSCD.2022.26},
+        pages = {26:1--26:23},
+        volume = {228},
+        series = {LIPIcs},
+        publisher = {Schloss Dagstuhl - Leibniz-Zentrum f{\"{u}}r Informatik},
+        booktitle = {FSCD 2022},
+        year = {2022},
+        author = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+        title = {mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity},
     }
     </pre>
 
