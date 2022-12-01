@@ -2213,7 +2213,8 @@ var bibtexify = (function($) {
         article: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
-                lang.in + ": <em>" + entryData.journal + ", " + entryData.volume +
+                lang.in + ": <em>" + entryData.journal + ", " +
+                ((entryData.volume) ? entryData.volume : "") + 
                 ((entryData.number) ? "(" + entryData.number + ")" : "") + ", " +
                 ((entryData.pages) ? "pp. " + entryData.pages : "") +
                 ((entryData.address) ? entryData.address + "." : "") + "<\/em>";
@@ -2261,7 +2262,7 @@ var bibtexify = (function($) {
                     this.authors2html(entryData.editor) +
                     ((lang.editor) ? lang.editor : "") : "") + "<br>" +
                     "<em id=\"" +  entryData.cite + "\">" + entryData.title + "</em>.<br/>" +
-                    ((entryData.volume) ? ", Vol. " + entryData.volume + "" : "") +
+                    ((entryData.volume) ? "Vol. " + entryData.volume + "" : "") +
                     ((entryData.address) ? ", " + entryData.address : "") + ". " +
                     ((entryData.organization) ? +entryData.organization : "") +
                     ((entryData.organization && entryData.publisher) ? ", " : "") +
