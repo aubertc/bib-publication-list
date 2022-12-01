@@ -18,7 +18,7 @@ To use this program, you will need to
 - Load two javascript libraries and one css file,
 - Call the program with a `<script>` element.
 
-The pre-compiled (and minified) files are located in the [build/](build/) folder.
+The pre-compiled (and minified) files are at [in the release](https://github.com/aubertc/bib-publication-list/releases).
 
 ### Include your BibTex
 
