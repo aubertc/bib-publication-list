@@ -227,7 +227,7 @@ var bibtexify = (function($) {
                     }
                     itemStr += ' },\n';
                 } else if (key != 'entryType' && key != 'cite') {
-                    itemStr += '  ' + key + " = { " + value + " },\n";
+                    itemStr += '  ' + key + " = {" + value + "},\n";
                 }
             });
             itemStr += "}</pre></div>";
