@@ -159,10 +159,14 @@ The main changes are:
 
 - [Updated](https://github.com/aubertc/bib-publication-list/commit/96fed3ad87cec534ca327c55a44a176fbb1c5e93) [DataTables](https://datatables.net/) to 1.13.1,
 - [Added support](https://github.com/aubertc/bib-publication-list/commit/4155d66a05e741443b545f0b207a51d970372d0c) for `doi` and `eprint` fields.
+- [Added support]() for [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://fontawesome.com/)[^2].
 - Changed some styles,
 - Improved example files,
 - Added support for French in addition to English,
 - Generally clarifying the documentation.
+
+[^2]: To use it, remember to include the fonts, using `	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">`, as presented in [the examples](test/html).
+
 
 The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the following:
 
