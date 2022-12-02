@@ -204,22 +204,23 @@ var bibtexify = (function($) {
             if (entryData.archiveprefix) {
                 if (entryData.eprint) {
                     var archiveurl = '';
+                    var archivelogo = '';
                     if (entryData.archiveprefix == "arXiv") {
-                        archiveurl = 'href="http://arxiv.org/abs/';
+                        archiveurl = 'http://arxiv.org/abs/';
                         archivelogo = 'ai ai-arxiv';
                     }
-                    if (entryData.archiveprefix == "tel") {
-                        archiveurl = 'href="https://tel.archives-ouvertes.fr/';
+                    else if (entryData.archiveprefix == "tel") {
+                        archiveurl = 'https://tel.archives-ouvertes.fr/';
                     }
-                    if (entryData.archiveprefix == "hal") {
-                        archiveurl = 'href="https://hal.archives-ouvertes.fr/';
-                        archivelogo = 'ai ai-hal';
+                    else if (entryData.archiveprefix == "hal") {
+                        archiveurl = 'https://hal.archives-ouvertes.fr/';
+                        archivelogo = 'ai ai-hal" style="color:#cd3c1b"';
                     }
-                    if (entryData.archiveprefix == "handle") {
-                        archiveurl = 'href="https://hdl.handle.net/';
+                    else if (entryData.archiveprefix == "handle") {
+                        archiveurl = 'https://hdl.handle.net/';
                     }
-                    itemStr += ' (<a title="' + lang.archived + '"' + entryData.archiveprefix + '."' + archiveurl +
-                        entryData.eprint + '"><i class="' + archivelogo + '"></i>' + entryData.archiveprefix + '<\/a>)';
+                    itemStr += ' (<a title="' + lang.archived + ' ' + entryData.archiveprefix + '." href="' + archiveurl + 
+                        entryData.eprint + '">' + (archivelogo ? '<i class="' + archivelogo + '"></i>': '') + entryData.archiveprefix + '<\/a>)';
                 }
             }
             if (entryData.file) {
