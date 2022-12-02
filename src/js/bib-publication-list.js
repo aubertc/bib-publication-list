@@ -57,9 +57,10 @@ var bibtexify = (function($) {
                 'and': 'et',
                 'archived': 'Version archivée sur',
                 'article': 'Journal',
+                 'bibtex': 'Entrée au format BibTex',
                 'book': 'Book',
                 'close': 'Fermer',
-                'conference': '<em>Workshop</em>',
+                'conference': '<em>Workshop</em>', // we abuse the conference type alias by making it a workshop.
                 'desc': 'Description',
                 'dir': 'Sous la dir. de',
                 'doi': 'Digital Object Identifier',
@@ -71,6 +72,7 @@ var bibtexify = (function($) {
                 'infoEmpty': 'Affichage de 0 à 0 sur 0 entrées',
                 'infoFiltered': '(filtrées depuis un total de _MAX_ entrées)',
                 'inproceedings': 'Conférence',
+                 'link': 'Lien',
                 'manual': 'Manual',
                 'mastersthesis': 'Mémoire',
                 'misc': 'Divers',
@@ -90,11 +92,12 @@ var bibtexify = (function($) {
             },
             en: {
                 'and': 'and',
-                'archived': 'Version archied on',
+                'archived': 'Version archived on',
                 'article': 'Journal',
                 'book': 'Book',
+                'bibtex' : 'This article as BibTeX',
                 'close': 'Close',
-                'conference': 'Conference',
+                'conference': 'Workshop',  // we abuse the conference type alias by making it a workshop.
                 'desc': 'Description',
                 'dir': 'Edited by',
                 'doi': 'Digital Object Identifier',
@@ -107,6 +110,7 @@ var bibtexify = (function($) {
                 'infoEmpty': 'No records available',
                 'infoFiltered': '(filtered from _MAX_ total records)',
                 'inproceedings': 'Conference',
+                 'link' : 'link',
                 'manual': 'Manual',
                 'mastersthesis': 'Thesis',
                 'misc': 'Misc',
@@ -188,26 +192,28 @@ var bibtexify = (function($) {
             var itemStr = '';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
                 itemStr += ' (<a title="' + lang.pdfversion + '." href="' +
-                    entryData.url + '">pdf<\/a>)';
+                    entryData.url + '"><i class="fa fa-file-pdf-o fa-fw" style="color:red"></i>pdf<\/a>)';
             } else if (entryData.url) {
                 itemStr += ' (<a title="' + lang.online + '"  href="' + entryData.url +
-                    '">link<\/a>)';
+                    '"><i class="fa fa-external-link fa-fw" style="color:blue"></i>' + lang.link + '<\/a>)';
             }
             if (entryData.doi) {
                 itemStr += ' (<a title="' + lang.doi + '." href="http://dx.doi.org/' +
-                    entryData.doi + '">doi<\/a>)';
+                    entryData.doi + '"><i class="ai ai-doi"></i> doi<\/a>)';
             }
             if (entryData.archiveprefix) {
                 if (entryData.eprint) {
                     var archiveurl = '';
                     if (entryData.archiveprefix == "arXiv") {
                         archiveurl = 'href="http://arxiv.org/abs/';
+                        archivelogo = '<i class="ai ai-arxiv"></i>';
                     }
                     if (entryData.archiveprefix == "tel") {
                         archiveurl = 'href="https://tel.archives-ouvertes.fr/';
                     }
                     if (entryData.archiveprefix == "hal") {
                         archiveurl = 'href="https://hal.archives-ouvertes.fr/';
+                        archivelogo = '<i class="ai ai-hal"></i>';
                     }
                     if (entryData.archiveprefix == "handle") {
                         archiveurl = 'href="https://hdl.handle.net/';
@@ -224,7 +230,7 @@ var bibtexify = (function($) {
         // adds the bibtex link and the opening div with bibtex content
         bibtex: function(entryData) {
             var itemStr = '';
-            itemStr += ' (<a title="This article as BibTeX" href="#" class="biblink">' +
+            itemStr += ' (<a title="' + lang.bibtex + '" href="#" class="biblink"><i class="fa fa-file-text-o fa-fw" style="color:green"></i>' +
                 'bib</a>)<div class="bibinfo hidden">';
             itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">⨯</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
@@ -236,7 +242,7 @@ var bibtexify = (function($) {
                             itemStr += " and ";
                         }
                         itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : '') +
-                            value[index].last +  (value[index].first ?  ",  "+ value[index].first : '');                  
+                            value[index].last +  (value[index].first ?  ", "+ value[index].first : '');                  
                     }
                     itemStr += '},\n';
                 } else if (key == 'editor') {
@@ -246,7 +252,7 @@ var bibtexify = (function($) {
                             itemStr += " and ";
                         }
                         itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : '') +
-                            value[index].last +  (value[index].first ?  ",  "+ value[index].first : '');                  
+                            value[index].last +  (value[index].first ?  ", "+ value[index].first : '');                  
                         
                     }
                     itemStr += '},\n';
@@ -360,8 +366,8 @@ var bibtexify = (function($) {
                     this.authors2html(entryData.editor) +
                     ((lang.editor) ? lang.editor : "") : "") + "<br>" +
                     "<strong id=\"" +  entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
-                    ((entryData.volume) ? "Vol. " + entryData.volume  : "") +
-                    ((entryData.series) ? ", " + entryData.series  : "") +
+                    ((entryData.volume) ? "T. " + entryData.volume + "." : "") +
+                    ((entryData.series) ? " " + entryData.series  : "") +
                     ((entryData.address) ? ", " + entryData.address : "") + ". " +
                     ((entryData.organization) ? +entryData.organization : "") +
                     ((entryData.organization && entryData.publisher) ? ", " : "") +
@@ -372,25 +378,26 @@ var bibtexify = (function($) {
         // weights of the different types of entries; used when sorting
         importance: {
             'TITLE': 9999,
+            'unpublished': 0,
             'misc': 0,
             'manual': 10,
             'techreport': 20,
             'mastersthesis': 30,
-            'conference': 40,
-            'incollection': 50,
-            'inproceedings': 60,
-            'proceedings': 70,
-            'article': 80,
-            'phdthesis': 90,
+            'phdthesis': 40,
+            'conference': 50,
+            'incollection': 60,
+            'inproceedings': 70,
+            'proceedings': 80,
+            'article': 90,
             'inbook': 100,
-            'book': 110,
-            'unpublished': 0
+            'book': 110
         } // Conference is used for workshops, so their weight is lighter than inproceedings, which is used for conferences.
     };
     // format a phd thesis like a  masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
-    // bib2html.conference = bib2html.inproceedings;
+    // but is counted differently
+    bib2html.conference = bib2html.inproceedings;
 
     // event handlers for the bibtex links
     var EventHandlers = {

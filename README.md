@@ -3,7 +3,7 @@
 bib-publication-list is a javascript tool to automatically generate an interactive HTML publication list from a BibTeX file.
 It uses [jQuery](http://jquery.com/), [DataTables](http://datatables.net/), and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
 
-A static and probably better maintained alternative to this project would be, in my opinion, to [use pandoc to generate a html file from a bib file](https://tex.stackexchange.com/a/298385/34551).
+A static and probably better maintained alternative to this project would be, in my opinion, to [use pandoc to generate a html file from a bib file](https://tex.stackexchange.com/a/298385/34551), possibly [splitting it](https://github.com/jgm/citeproc/issues/5) (cf. also [this issue](https://github.com/jgm/pandoc-citeproc/issues/89)) using [a lua filter](https://github.com/pandoc/lua-filters/tree/master/multiple-bibliographies).
 
 ## Demo
 
