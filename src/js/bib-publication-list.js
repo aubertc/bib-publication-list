@@ -199,27 +199,27 @@ var bibtexify = (function($) {
             }
             if (entryData.doi) {
                 itemStr += ' (<a title="' + lang.doi + '." href="http://dx.doi.org/' +
-                    entryData.doi + '"><i class="ai ai-doi"></i> doi<\/a>)';
+                    entryData.doi + '"><i class="ai ai-doi"></i>doi<\/a>)';
             }
             if (entryData.archiveprefix) {
                 if (entryData.eprint) {
                     var archiveurl = '';
                     if (entryData.archiveprefix == "arXiv") {
                         archiveurl = 'href="http://arxiv.org/abs/';
-                        archivelogo = '<i class="ai ai-arxiv"></i>';
+                        archivelogo = 'ai ai-arxiv';
                     }
                     if (entryData.archiveprefix == "tel") {
                         archiveurl = 'href="https://tel.archives-ouvertes.fr/';
                     }
                     if (entryData.archiveprefix == "hal") {
                         archiveurl = 'href="https://hal.archives-ouvertes.fr/';
-                        archivelogo = '<i class="ai ai-hal"></i>';
+                        archivelogo = 'ai ai-hal';
                     }
                     if (entryData.archiveprefix == "handle") {
                         archiveurl = 'href="https://hdl.handle.net/';
                     }
                     itemStr += ' (<a title="' + lang.archived + '"' + entryData.archiveprefix + '."' + archiveurl +
-                        entryData.eprint + '">' + entryData.archiveprefix + '<\/a>)';
+                        entryData.eprint + '"><i class="' + archivelogo + '"></i>' + entryData.archiveprefix + '<\/a>)';
                 }
             }
             if (entryData.file) {

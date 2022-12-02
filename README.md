@@ -119,7 +119,7 @@ And _voilà_!
 
 ### Icon support
 
-Optionally, you can add the [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://fontawesome.com/) stylesheets, using
+Optionally, you can add the [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://github.com/FortAwesome/Font-Awesome) stylesheets, using
 
 ```html
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -173,7 +173,7 @@ The main changes are:
 
 - [Updated](https://github.com/aubertc/bib-publication-list/commit/96fed3ad87cec534ca327c55a44a176fbb1c5e93) [DataTables](https://datatables.net/) to 1.13.1,
 - [Added support](https://github.com/aubertc/bib-publication-list/commit/4155d66a05e741443b545f0b207a51d970372d0c) for `doi` and `eprint` fields.
-- [Added support](https://github.com/aubertc/bib-publication-list/commit/36840c0a564d395da57890a914e051da873c7e4a) for [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://fontawesome.com/)[^2].
+- [Added support](https://github.com/aubertc/bib-publication-list/commit/36840c0a564d395da57890a914e051da873c7e4a) for [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://github.com/FortAwesome/Font-Awesome)[^2].
 - Changed some styles,
 - Improved example files,
 - Added support for French in addition to English,
