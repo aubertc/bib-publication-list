@@ -157,9 +157,6 @@ div.bibinfo {
     background-color: #bbb;
     border: 3px solid #fff;
     padding: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -o-border-radius: 10px;
     border-radius: 10px;
     z-index: 50;
 }
@@ -190,9 +187,6 @@ a.bibclose {
     text-decoration: none;
     top: -25px;
     width: 20px;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -o-border-radius: 15px;
     border-radius: 15px;
 }
 
