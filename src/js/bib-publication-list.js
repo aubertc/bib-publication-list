@@ -187,14 +187,14 @@ var bibtexify = (function($) {
             var itemStr = '';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
                 itemStr += ' (<a title="' + lang.pdfversion + '." href="' +
-                    entryData.url + '"><i class="fa fa-file-pdf-o fa-fw" style="color:red"></i>pdf<\/a>)';
+                    entryData.url + '"><i class="fa fa-file-pdf fa-fw" style="color:red"></i>pdf<\/a>)';
             } else if (entryData.url) {
                 itemStr += ' (<a title="' + lang.online + '"  href="' + entryData.url +
                     '"><i class="fa fa-external-link fa-fw" style="color:blue"></i>' + lang.link + '<\/a>)';
             }
             if (entryData.doi) {
                 itemStr += ' (<a title="' + lang.doi + '." href="http://dx.doi.org/' +
-                    entryData.doi + '"><i class="ai ai-doi"></i>doi<\/a>)';
+                    entryData.doi + '"><i class="ai ai-doi" style="color:#fab222"></i>doi<\/a>)';
             }
             if (entryData.archiveprefix) {
                 if (entryData.eprint) {
@@ -226,7 +226,7 @@ var bibtexify = (function($) {
         // adds the bibtex link and the opening div with bibtex content
         bibtex: function(entryData) {
             var itemStr = '';
-            itemStr += ' (<a title="' + lang.bibtex + '" href="#" class="biblink"><i class="fa fa-file-text-o fa-fw" style="color:green"></i>' +
+            itemStr += ' (<a title="' + lang.bibtex + '" href="#" class="biblink"><i class="fa fa-file-text fa-fw" style="color:green"></i>' +
                 'bib</a>)<div class="bibinfo hidden">';
             itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">⨯</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
@@ -264,12 +264,10 @@ var bibtexify = (function($) {
             return this.authors2html(entryData.author) + ".<br>" +
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                 lang.in + ": <em>" + entryData.booktitle + "</em>. " +
-                ((entryData.editor) ?
-                    ((lang.dir) ? lang.dir + " " : "") +
-                    this.authors2html(entryData.editor) +
-                    ((lang.editor) ? lang.editor + ".": "") : "") +
-                        ((entryData.publisher) ? entryData.publisher + ", " : "") +
-            ((entryData.pages) ? "pp. " + entryData.pages : "") + // Not the cleanest, we assume that if there is a page number, then there is an address.
+                ((entryData.editor) ? lang.dir + " " + this.authors2html(entryData.editor) + ". " : "") + 
+                ((entryData.publisher) ? entryData.publisher : "") +
+                ((entryData.publisher)? ((entryData.pages)? ", " : "."):"") + 
+            ((entryData.pages) ? "pp. " + entryData.pages : "") +
             ((entryData.address) ? ", " + entryData.address : "") +
             ".<\/em>";
         },
