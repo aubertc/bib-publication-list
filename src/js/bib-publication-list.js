@@ -206,6 +206,7 @@ var bibtexify = (function($) {
                     }
                     else if (entryData.archiveprefix == "tel") {
                         archiveurl = 'https://tel.archives-ouvertes.fr/';
+                        archivelogo = 'ai ai-hal" style="color:#cd3c1b"'; // I am not aware of a particular logo for tel that is different from the logo of hal.
                     }
                     else if (entryData.archiveprefix == "hal") {
                         archiveurl = 'https://hal.archives-ouvertes.fr/';
@@ -265,9 +266,9 @@ var bibtexify = (function($) {
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                 lang.in + ": <em>" + entryData.booktitle + "</em>. " +
                 ((entryData.editor) ? lang.dir + " " + this.authors2html(entryData.editor) + ". " : "") + 
-                ((entryData.publisher) ? entryData.publisher : "") +
+                ((entryData.publisher) ? htmlify(entryData.publisher) : "") +
                 ((entryData.publisher)? ((entryData.pages)? ", " : "."):"") + 
-                ((entryData.pages) ? "pp. " + entryData.pages : "") +
+                ((entryData.pages) ? "pp.&nbsp;" + entryData.pages : "") +
                 ((entryData.address) ? ", " + entryData.address + ".": "") +
                 "<\/em>";
         },
@@ -277,7 +278,7 @@ var bibtexify = (function($) {
                 +lang.in + ": " +
                 ((entryData.editor) ? "" + this.authors2html(entryData.editor) + ", " + lang.editor + ", " : "") +
                 "<em>" + entryData.booktitle +
-                ((entryData.pages) ? ", pp. " + entryData.pages : "") +
+                ((entryData.pages) ? ", pp.&nbsp;" + entryData.pages : "") +
                 ((entryData.address) ? ", " + entryData.address : "") + ".<\/em>";
         },
         article: function(entryData) {
@@ -286,7 +287,7 @@ var bibtexify = (function($) {
                 lang.in + ": <em>" + entryData.journal +
                 ((entryData.volume) ? ", " + entryData.volume : "") + 
                 ((entryData.number) ? "(" + entryData.number + ")" : "") +
-                ((entryData.pages) ? ", pp. " + entryData.pages + "." : "") +
+                ((entryData.pages) ? ", pp.&nbsp;" + entryData.pages + "." : "") +
                 ((entryData.address) ? entryData.address + "." : "") + "<\/em>";
         },
         misc: function(entryData) {
@@ -320,9 +321,9 @@ var bibtexify = (function($) {
                 lang.in + " <em>" + entryData.title + "<\/em>, " +
                 ((entryData.editor) ? " " + lang.dir + " " + this.authors2html(entryData.editor) + ", " : "") +
                 entryData.publisher +
-                ((entryData.pages) ? ", pp. " + entryData.pages : "") +
+                ((entryData.pages) ? ", pp.&nbsp;" + entryData.pages : "") +
                 ((entryData.series) ? ", <em>" + entryData.series + "<\/em>" : "") +
-                ((entryData.volume) ? ", Vol. " + entryData.volume  : "") +
+                ((entryData.volume) ? ", Vol.&nbsp;" + entryData.volume  : "") +
                 ((entryData.issn) ? ", ISBN: " + entryData.issn  : "") +
                 ".";
         },
