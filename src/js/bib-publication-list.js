@@ -84,7 +84,6 @@ var bibtexify = (function($) {
                 'search': 'Rechercher :',
                 'sourcetex': 'Source code LaTeX',
                 'techreport': 'Rapport de recherche',
-                'tweet': 'Tweeter cet article',
                 'type': 'Type',
                 'unpublished': 'Soumis',
                 'year': 'Année',
@@ -122,7 +121,6 @@ var bibtexify = (function($) {
                 'search': 'Search:',
                 'sourcetex': 'Latex source code',
                 'techreport': 'Technical report',
-                'tweet': 'Tweet this article',
                 'type': 'Type',
                 'unpublished': 'Unpublished',
                 'year': 'Year',
@@ -149,9 +147,6 @@ var bibtexify = (function($) {
             var itemStr = htmlify(bib2html[type](entryData));
             itemStr += bib2html.links(entryData);
             itemStr += bib2html.bibtex(entryData);
-            if (bib.options.tweet && entryData.url) {
-                itemStr += bib2html.tweet(entryData, bib);
-            }
             return itemStr.replace(/undefined[,.]?/g,
                 '<span class="undefined">' + lang.missing + '<\/span>');
         },
@@ -262,33 +257,6 @@ var bibtexify = (function($) {
                 }
             });
             itemStr += "}</pre></div>";
-            return itemStr;
-        },
-        // generates the twitter link for the entry
-        // this should really be replaced by a mastodon link ;-)
-        // This function seems to be broken, but I have no interest in fixing it.
-        tweet: function(entryData, bib) {
-            // url, via, text
-            var itemStr = ' (<a title="' + lang.tweet + '" href="http://twitter.com/share?url=';
-            itemStr += entryData.url;
-            itemStr += '&via=' + bib.options.tweet;
-            itemStr += '&text=';
-            var splitName = function(wholeName) {
-                var spl = wholeName.split(' ');
-                return spl[spl.length - 1];
-            };
-            var auth = entryData.author;
-            if (!auth) {
-                // nothing to do
-            } else if (auth.length == 1) {
-                itemStr += uriencode(splitName(auth[0].last));
-            } else if (auth.length == 2) {
-                itemStr += uriencode(splitName(auth[0].last) + "%26" + splitName(auth[1].last));
-            } else {
-                itemStr += uriencode(splitName(auth[0].last) + " et al");
-            }
-            itemStr += ": " + uriencode(entryData.title);
-            itemStr += '">tweet</a>)';
             return itemStr;
         },
         // helper functions for formatting different types of bibtex entries
@@ -617,8 +585,7 @@ var bibtexify = (function($) {
     // Supported options:
     //   - visualization: A boolean to control addition of the visualization.
     //                    Defaults to true.
-    //   - tweet: Twitter username to add Tweet links to bib items with a url field.
-    //   - sorting: Control the default sorting of the list. Defaults to [[0, "desc"],
+     //   - sorting: Control the default sorting of the list. Defaults to [[0, "desc"],
     //              [1, "desc"]]. See http://datatables.net/api fnSort for details
     //              on formatting.
     //   - bib2html: Can be used to override any of the functions or properties of
