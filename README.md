@@ -133,7 +133,7 @@ The main changes are:
 This code is _poorly documented and maintained_, use at your own risk, and feel free to open issues or to reach out by email.
 You can see a demo [on my website](https://aubert.perso.math.cnrs.fr/#publicatio).
 
-The [previous fork]](https://github.com/GioBonvi/bib-publication-list) added the following:
+The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the following:
 
 - More flexible HTML structure
 - Use of flexbox for a more responsive behavior
