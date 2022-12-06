@@ -3,15 +3,13 @@
 </html>
 <html>
 	<head>
-		<title>Testing bibtex</title>
+		<title>Testing bibtex (without logos)</title>
 		<link rel="stylesheet" href="../../build/bib-list.css"/>
 		<!-- minified versions: -->
 		<!--
 		<link rel="stylesheet" href="../../build/bib-list.min.css"/>
-        --> 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> <!-- This is optional -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"> <!-- This is optional, too. -->
-    </head>
+		-->
+   </head>
 	<body>
     <noscript>
       <!-- bibtex source hidden by default, show it if JS disabled -->
@@ -19,7 +17,9 @@
       #bibtex { display: block;}
       </style>
     </noscript>
-    <p><em>Attention</em> : Le fichier bibtex présenté ici ne suit <em>pas</em> toutes les bonnes pratiques.</p>
+    
+    <p><em>Warning</em>: the bibtex file used here is <em>not</em> following all good practices.</p>
+
     <!--Automatic graph positioning-->
     <div id="bib-publication-list">
       <table></table>
@@ -41,7 +41,7 @@
       </div>
     </div>
     -->
-    <!-- This file is copied from test/example.bib -->
+<!-- This file is copied from test/example.bib -->
     <pre id="bibtex" style="display:none;">
 If you know a better example file, please advertise it at
 https://tex.stackexchange.com/questions/666780/curated-bib-example-file
@@ -441,7 +441,6 @@ or open an issue!
 	pages        = {52--56},
 	url          = {http://www.cs.hut.fi/Research/SVG/publications/koli02P08.pdf}
 }
-
 </pre>
     <!-- We load jquery first: -->
     <script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
