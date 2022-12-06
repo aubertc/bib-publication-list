@@ -165,7 +165,7 @@ and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/)[^1].
 
 [^1]: This latter library could probably [be replaced](https://github.com/aubertc/bib-publication-list/issues/1) by [bibtexParseJS ](https://github.com/ORCID/bibtexParseJs) with benefits.
 
-# History / Changelog
+# History / Changelog and Licences
 
 This is a fork of [bib-publication-list](https://github.com/GioBonvi/bib-publication-list), which is itself a fork of [bib-publication-list](https://github.com/vkaravir/bib-publication-list) that I created for personal use.
 
@@ -179,8 +179,7 @@ The main changes are:
 - Added support for French in addition to English,
 - Generally clarifying the documentation.
 
-[^2]: To use it, remember to include the fonts, using `	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">`, as presented in [the examples](test/html).
-
+[^2]: To use it, remember to include the fonts, using `	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">`, as presented in some of [the examples](test/html).
 
 The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the following:
 
@@ -192,6 +191,8 @@ The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the 
 - Some minor changes in the CSS style
 - Fixed some types of BibTex content requiring fields that are not actually required by BibTex standard
 - Introduced the use of "et al." for publications with more than 6 authors
+
+Unfortunately, the licence under which this code was originally written is unknown, and the authors [have not responded to my request](https://github.com/vkaravir/bib-publication-list/issues/29), so I am unable to place this code under any licence. If it was up to me, I'd use the [WTFPL](http://www.wtfpl.net/about/), and all my commits can be considered under that licence (that allows you to re-use my code with a different licence if you wish to do so).
 
 ## Deprecated 
 
@@ -215,3 +216,5 @@ visible when JavaScript is disabled. To do that, add
 >     <noscript><style>#bibtex { display: block; }</style></noscript>
 > 
 > to your HTML.
+
+The possibility of adding links to tweeter accounts was also deprecated, and was removed.
