@@ -122,7 +122,7 @@ And _voilà_!
 Optionally, you can add the [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://github.com/FortAwesome/Font-Awesome) stylesheets, using
 
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 ```
 
