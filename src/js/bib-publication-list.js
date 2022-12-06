@@ -54,74 +54,78 @@ var bibtexify = (function($) {
         // for the tables.
         lang: {
             fr: {
-                'and': "et",
-                'archived': "Version archivée sur",
-                'article': "Journal",
-                'book': "Book",
-                'close': "Fermer",
-                'conference': "<em>Workshop</em>",
-                'desc': "Description",
-                'dir': "Sous la dir. de",
-                'doi': "Digital Object Identifier",
-                'future': "À paraître",
-                'in': "In",
-                'inbook': "Book chapter",
-                'incollection': "",
+                'and': 'et',
+                'archived': 'Version archivée sur',
+                'article': 'Journal',
+                 'bibtex': 'Entrée au format BibTex',
+                'book': 'Book',
+                'close': 'Fermer',
+                'conference': '<em>Workshop</em>', // we abuse the conference type alias by making it a workshop.
+                'desc': 'Description',
+                'dir': 'Sous la dir. de',
+                'doi': 'Digital Object Identifier',
+                'future': 'À paraître',
+                'in': 'In',
+                'inbook': 'Book chapter',
+                'incollection': '',
                 'info': 'Affichage de _START_ à _END_ sur _TOTAL_ entrées',
                 'infoEmpty': 'Affichage de 0 à 0 sur 0 entrées',
                 'infoFiltered': '(filtrées depuis un total de _MAX_ entrées)',
-                'inproceedings': "Conférence",
-                'manual': "Manual",
-                'mastersthesis': "Mémoire",
-                'misc': "Misc",
-                'missing': "Manquant",
-                'online': "Cet article en ligne",
-                'pdfversion': "Version PDF",
-                'phdthesis': "Thèse",
-                'proceedings': "Édition",
+                'inproceedings': 'Conférence',
+                 'link': 'Lien',
+                'manual': 'Manual',
+                'mastersthesis': 'Mémoire',
+                'misc': 'Divers',
+                'missing': 'Manquant',
+                'online': 'Cet article en ligne',
+                'pdfversion': 'Version PDF',
+                'phdthesis': 'Thèse',
+                'proceedings': 'Édition',
                 'search': 'Rechercher :',
-                'sourcetex': "Source code LaTeX",
-                'techreport': "Rapport de recherche",
-                'tweet': "Tweeter cet article",
-                'type': "Type",
-                'unpublished': "Soumis",
-                'year': "Année",
+                'sourcetex': 'Source code LaTeX',
+                'techreport': 'Rapport de recherche',
+                'tweet': 'Tweeter cet article',
+                'type': 'Type',
+                'unpublished': 'Soumis',
+                'year': 'Année',
                 'zeroRecords': 'Aucune entrée correspondante trouvée'
             },
             en: {
-                'and': "and",
-                'archived': "Version archied on",
-                'article': "Journal",
-                'book': "Book",
-                'close': "Close",
-                'conference': "Conference",
-                'desc': "Description",
-                'dir': "Edited by",
-                'doi': "Digital Object Identifier",
-                'editor': "editor",
-                'future': "To Appear",
-                'in': "In",
-                'inbook': "Book chapter",
-                'incollection': "In Collection",
+                'and': 'and',
+                'archived': 'Version archived on',
+                'article': 'Journal',
+                'book': 'Book',
+                'bibtex' : 'This article as BibTeX',
+                'close': 'Close',
+                'conference': 'Workshop',  // we abuse the conference type alias by making it a workshop.
+                'desc': 'Description',
+                'dir': 'Edited by',
+                'doi': 'Digital Object Identifier',
+                'editor': 'editor',
+                'future': 'To Appear',
+                'in': 'In',
+                'inbook': 'Book chapter',
+                'incollection': 'In Collection',
                 'info': 'Showing page _PAGE_ of _PAGES_',
                 'infoEmpty': 'No records available',
                 'infoFiltered': '(filtered from _MAX_ total records)',
-                'inproceedings': "Conference",
-                'manual': "Manual",
-                'mastersthesis': "Thesis",
-                'misc': "Misc",
-                'missing': "Missing",
-                'online': "This article online",
-                'pdfversion': "PDF version",
-                'phdthesis': "PhD Thesis",
-                'proceedings': "Conference proceeding",
+                'inproceedings': 'Conference',
+                 'link' : 'link',
+                'manual': 'Manual',
+                'mastersthesis': 'Thesis',
+                'misc': 'Misc',
+                'missing': 'Missing',
+                'online': 'This article online',
+                'pdfversion': 'PDF version',
+                'phdthesis': 'PhD Thesis',
+                'proceedings': 'Conference proceeding',
                 'search': 'Search:',
-                'sourcetex': "Latex source code",
-                'techreport': "Technical report",
-                'tweet': "Tweet this article",
-                'type': "Type",
-                'unpublished': "Unpublished",
-                'year': "Year",
+                'sourcetex': 'Latex source code',
+                'techreport': 'Technical report',
+                'tweet': 'Tweet this article',
+                'type': 'Type',
+                'unpublished': 'Unpublished',
+                'year': 'Year',
                 'zeroRecords': 'Nothing found - sorry'
             }
         },
@@ -188,32 +192,35 @@ var bibtexify = (function($) {
             var itemStr = '';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
                 itemStr += ' (<a title="' + lang.pdfversion + '." href="' +
-                    entryData.url + '">pdf<\/a>)';
+                    entryData.url + '"><i class="fa fa-file-pdf-o fa-fw" style="color:red"></i>pdf<\/a>)';
             } else if (entryData.url) {
                 itemStr += ' (<a title="' + lang.online + '"  href="' + entryData.url +
-                    '">link<\/a>)';
+                    '"><i class="fa fa-external-link fa-fw" style="color:blue"></i>' + lang.link + '<\/a>)';
             }
             if (entryData.doi) {
                 itemStr += ' (<a title="' + lang.doi + '." href="http://dx.doi.org/' +
-                    entryData.doi + '">doi<\/a>)';
+                    entryData.doi + '"><i class="ai ai-doi"></i>doi<\/a>)';
             }
             if (entryData.archiveprefix) {
                 if (entryData.eprint) {
                     var archiveurl = '';
+                    var archivelogo = '';
                     if (entryData.archiveprefix == "arXiv") {
-                        archiveurl = 'href="http://arxiv.org/abs/';
+                        archiveurl = 'http://arxiv.org/abs/';
+                        archivelogo = 'ai ai-arxiv';
                     }
-                    if (entryData.archiveprefix == "tel") {
-                        archiveurl = 'href="https://tel.archives-ouvertes.fr/';
+                    else if (entryData.archiveprefix == "tel") {
+                        archiveurl = 'https://tel.archives-ouvertes.fr/';
                     }
-                    if (entryData.archiveprefix == "hal") {
-                        archiveurl = 'href="https://hal.archives-ouvertes.fr/';
+                    else if (entryData.archiveprefix == "hal") {
+                        archiveurl = 'https://hal.archives-ouvertes.fr/';
+                        archivelogo = 'ai ai-hal" style="color:#cd3c1b"';
                     }
-                    if (entryData.archiveprefix == "handle") {
-                        archiveurl = 'href="https://hdl.handle.net/';
+                    else if (entryData.archiveprefix == "handle") {
+                        archiveurl = 'https://hdl.handle.net/';
                     }
-                    itemStr += ' (<a title="' + lang.archived + '"' + entryData.archiveprefix + '."' + archiveurl +
-                        entryData.eprint + '">' + entryData.archiveprefix + '<\/a>)';
+                    itemStr += ' (<a title="' + lang.archived + ' ' + entryData.archiveprefix + '." href="' + archiveurl + 
+                        entryData.eprint + '">' + (archivelogo ? '<i class="' + archivelogo + '"></i>': '') + entryData.archiveprefix + '<\/a>)';
                 }
             }
             if (entryData.file) {
@@ -224,20 +231,32 @@ var bibtexify = (function($) {
         // adds the bibtex link and the opening div with bibtex content
         bibtex: function(entryData) {
             var itemStr = '';
-            itemStr += ' (<a title="This article as BibTeX" href="#" class="biblink">' +
+            itemStr += ' (<a title="' + lang.bibtex + '" href="#" class="biblink"><i class="fa fa-file-text-o fa-fw" style="color:green"></i>' +
                 'bib</a>)<div class="bibinfo hidden">';
             itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">⨯</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
             $.each(entryData, function(key, value) {
                 if (key == 'author') {
-                    itemStr += '  author = { ';
+                    itemStr += '  author = {';
                     for (var index = 0; index < value.length; index++) {
                         if (index > 0) {
                             itemStr += " and ";
                         }
-                        itemStr += value[index].last;
+                        itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : '') +
+                            value[index].last +  (value[index].first ?  ", "+ value[index].first : '');                  
                     }
-                    itemStr += ' },\n';
+                    itemStr += '},\n';
+                } else if (key == 'editor') {
+                    itemStr += '  editor = {';
+                    for (var index = 0; index < value.length; index++) {
+                        if (index > 0) {
+                            itemStr += " and ";
+                        }
+                        itemStr +=  (value[index].von ? ' ' + value[index].von + ' ' : '') +
+                            value[index].last +  (value[index].first ?  ", "+ value[index].first : '');                  
+                        
+                    }
+                    itemStr += '},\n';
                 } else if (key != 'entryType' && key != 'cite') {
                     itemStr += '  ' + key + " = {" + value + "},\n";
                 }
@@ -300,7 +319,7 @@ var bibtexify = (function($) {
             return this.authors2html(entryData.author) + ".<br>" +
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                 lang.in + ": <em>" + entryData.journal +
-                ((entryData.volume) ? + ", " + entryData.volume : "") + 
+                ((entryData.volume) ? ", " + entryData.volume : "") + 
                 ((entryData.number) ? "(" + entryData.number + ")" : "") + ", " +
                 ((entryData.pages) ? "pp. " + entryData.pages : "") +
                 ((entryData.address) ? entryData.address + "." : "") + "<\/em>";
@@ -348,8 +367,8 @@ var bibtexify = (function($) {
                     this.authors2html(entryData.editor) +
                     ((lang.editor) ? lang.editor : "") : "") + "<br>" +
                     "<strong id=\"" +  entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
-                    ((entryData.volume) ? "Vol. " + entryData.volume  : "") +
-                    ((entryData.series) ? entryData.series  : "") +
+                    ((entryData.volume) ? "T. " + entryData.volume + "." : "") +
+                    ((entryData.series) ? " " + entryData.series  : "") +
                     ((entryData.address) ? ", " + entryData.address : "") + ". " +
                     ((entryData.organization) ? +entryData.organization : "") +
                     ((entryData.organization && entryData.publisher) ? ", " : "") +
@@ -360,25 +379,26 @@ var bibtexify = (function($) {
         // weights of the different types of entries; used when sorting
         importance: {
             'TITLE': 9999,
+            'unpublished': 0,
             'misc': 0,
             'manual': 10,
             'techreport': 20,
             'mastersthesis': 30,
-            'conference': 40,
-            'incollection': 50,
-            'inproceedings': 60,
-            'proceedings': 70,
-            'article': 80,
-            'phdthesis': 90,
+            'phdthesis': 40,
+            'conference': 50,
+            'incollection': 60,
+            'inproceedings': 70,
+            'proceedings': 80,
+            'article': 90,
             'inbook': 100,
-            'book': 110,
-            'unpublished': 0
+            'book': 110
         } // Conference is used for workshops, so their weight is lighter than inproceedings, which is used for conferences.
     };
     // format a phd thesis like a  masters thesis
     bib2html.phdthesis = bib2html.mastersthesis;
     // conference is the same as inproceedings
-    // bib2html.conference = bib2html.inproceedings;
+    // but is counted differently
+    bib2html.conference = bib2html.inproceedings;
 
     // event handlers for the bibtex links
     var EventHandlers = {
@@ -413,14 +433,17 @@ var bibtexify = (function($) {
         for (var index = 0; index < len; index++) {
             var item = bibtex.data[index];
             if (!item.year) {
-                if (this.options.lang == 'fr') {
-                    item.year = bib2html.lang.fr.future;
-                } else if (this.options.lang == 'en') {
-                    item.year = bib2html.lang.en.future;
-                } else {
-                    alert("This language is not supported yet. Defaulting to English.");
-                    item.year = bib2html.lang.en.future;
-                }
+                if(this.options.defaultYear){item.year = this.options.defaultYear;}
+                else{
+                    if (this.options.lang == 'fr') {
+                        item.year = bib2html.lang.fr.future;
+                    } else if (this.options.lang == 'en') {
+                        item.year = bib2html.lang.en.future;
+                    } else {
+                        alert("This language is not supported yet. Defaulting to English.");
+                        item.year = bib2html.lang.en.future;
+                    }
+                }   
             }
             try {
                 var html = bib2html.entry2html(item, this);

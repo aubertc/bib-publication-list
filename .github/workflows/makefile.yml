@@ -1,0 +1,32 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt-get install -y minify
+    
+    - name: Compile compressed & un-compressed versions
+      run: make all
+      
+    - name: Release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          files: |
+            build/bib-list.css
+            build/bib-list.js
+            build/bib-list.min.css
+            build/bib-list.min.js

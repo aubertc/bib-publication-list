@@ -3,7 +3,7 @@
 bib-publication-list is a javascript tool to automatically generate an interactive HTML publication list from a BibTeX file.
 It uses [jQuery](http://jquery.com/), [DataTables](http://datatables.net/), and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
 
-A more static and probably better maintained alternative to this project would be, in my opinion, to [use pandoc to generate a html file from a bib file](https://tex.stackexchange.com/a/298385/34551).
+A static and probably better maintained alternative to this project would be, in my opinion, to [use pandoc to generate a html file from a bib file](https://tex.stackexchange.com/a/298385/34551), possibly [splitting it](https://github.com/jgm/citeproc/issues/5) (cf. also [this issue](https://github.com/jgm/pandoc-citeproc/issues/89)) using [a lua filter](https://github.com/pandoc/lua-filters/tree/master/multiple-bibliographies).
 
 ## Demo
 
@@ -14,9 +14,11 @@ Alternatively, you can see this plug-in live [on my website](https://aubert.pers
 
 To use this program, you will need to 
 
-- Include your [BibTex](https://www.bibtex.com/) references in your webpage,
-- Load two javascript libraries and one css file,
+- Include your [BibTex](https://www.bibtex.com/) references in your `html` webpage,
+- Load one css file and two javascript libraries,
 - Call the program with a `<script>` element.
+
+The pre-compiled (and minified) files are at [in the release](https://github.com/aubertc/bib-publication-list/releases).
 
 ### Include your BibTex
 
@@ -24,100 +26,144 @@ Include the BibTeX into an HTML page and the `<div>` element where you want your
 
 For example:
 
-    <div id="bib-publication-list">
-        <table></table>
-    </div>
-    <pre id="bibtex">@article{Karavirta:JVLCTaxonomy,
-       title = {A comprehensive taxonomy of algorithm animation languages},
-       journal = {Journal of Visual Languages \& Computing},
-       volume = {20},
-       number = {1},
-       pages = {1--22},
-       year = {2010},
-       issn = {1045-926X},
-       doi = {DOI: 10.1016/j.jvlc.2009.09.001},
-       author = {Ville Karavirta and Ari Korhonen and Lauri Malmi and Thomas Naps}
-    }
-    </pre>
+```html
+<div id="bib-publication-list">
+    <table></table>
+</div>
+<pre id="bibtex">
+@inproceedings{Aubert2022FSCD,
+    editor = {Felty, Amy P.},
+    doi = {10.4230/LIPIcs.FSCD.2022.26},
+    pages = {26:1--26:23},
+    volume = {228},
+    series = {LIPIcs},
+    publisher = {Schloss Dagstuhl - Leibniz-Zentrum f{\"{u}}r Informatik},
+    booktitle = {FSCD 2022},
+    year = {2022},
+    author = {Aubert, Clément and Rubiano, Thomas and Rusch, Neea and Seiller, Thomas},
+    title = {mwp-Analysis Improvement and Implementation: Realizing Implicit Computational Complexity},
+}
+</pre>
+```
 
 The graph and the legend will be inserted just above the table. If you want to place them anywhere else in
 the page, e.g. if you want to wrap your table in a container and have the graph and legend outside, you
 can declare them in the HTML. The script won't insert new elements before the table and will instead use
 the ones you have created.
 
-    <div id="bib-publication-list">
-        <div class="bibchart-container">
-            <div class="bibchart"></div>
-        </div>
-        <div class="legend"></div>
-        <div class="some-table-wrapper">
-            <table></table>
-        </div>
+```html
+<div id="bib-publication-list">
+    <div class="bibchart-container">
+        <div class="bibchart"></div>
     </div>
+    <div class="legend"></div>
+    <div class="some-table-wrapper">
+        <table></table>
+    </div>
+</div>
+```
 
 ### Loading the library
 
-Load [jquery](https://releases.jquery.com/), our script, and the css file:
+Load the css file, [jquery](https://releases.jquery.com/) and our script: 
 
-    <link rel="stylesheet" href="bib-list.css"/>
-    ...
-    <script
-			  src="https://code.jquery.com/jquery-3.6.1.js"
-			  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-			  crossorigin="anonymous"></script>
-    <script type="text/javascript" src="bib-list.js"></script>
+```html
+<link rel="stylesheet" href="bib-list.css"/>
+...
+<script
+            src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous"></script>
+<script type="text/javascript" src="bib-list.js"></script>
+```
 
 Alternatively, you can use the compressed versions:
     
-    <link rel="stylesheet" href="bib-list.min.css"/>
-    ...
-    <script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
-			  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-			  crossorigin="anonymous"></script>
-    <script type="text/javascript" src="bib-list.min.js"></script>
+```html
+<link rel="stylesheet" href="bib-list.min.css"/>
+...
+<script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
+<script type="text/javascript" src="bib-list.min.js"></script>
+```
 
-			  
+You can even use [jsdelivr](https://www.jsdelivr.com/) if you don't want to host any file:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aubertc/bib-publication-list/build/bib-list.min.css"/>
+...
+<script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/aubertc/bib-publication-list/build/bib-list.min.js"></script>    
+```
+
 ### Call the script
 
-Finally, the `bib-publication-list` needs to know the input data element and the output table. So, some JavaScript:
+Finally, the `bib-publication-list` needs to know the input data element and the output table (cf. [below](#configuration-options) for the configuration options).
+So, some JavaScript:
 
-    <!-- Then we load our script by calling bibtexify with the correct options:
-         - id of the pre element containing the bibliography,
-         - id of the div element containing the table that will display the references,
-         - optional arguments.
-    -->
-    <script type="text/javascript">
-		    $(document).ready(function() {
-        	bibtexify("#bibtex", "bib-publication-list", {'tweet': 'vkaravir', 'lang': 'en'});
-    		});
-		</script>
+```html
+<script type="text/javascript">
+    $(document).ready(function() {
+    bibtexify("#bibtex", "bib-publication-list");
+    });
+</script>
+```
 
 And _voilà_!
 
+![](test/illustrations/demo.png)
+
+
+### Icon support
+
+Optionally, you can add the [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://github.com/FortAwesome/Font-Awesome) stylesheets, using
+
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+```
+
+to obtain icons:
+
+![](test/illustrations/icons_demo.png)
+
 ## Configuration Options
 
-The bibtexify function accepts an optional third parameter for configuration options. These options include:
+When calling `bibtexify`, two options are mandatory:
+
+- the `id` of the `pre` element containing the bibliography,
+- the `id` of the `div` element containing the table that will display the references.
+
+The bibtexify function also accepts an optional third parameter for configuration options. These options include:
 
 option | arguments
 --- | ------------
-visualization | A boolean to control addition of the visualization. Defaults to true.
-tweet | Twitter username to add Tweet links to bib items with a url field.
-sorting | Control the default sorting of the list. Defaults to `[[0, "desc"], [1, "desc"]]`. See (https://legacy.datatables.net/api#fnSort) for details on formatting.
-datatable | Pass options to the datatable library used to create the table of publications. See (https://legacy.datatables.net/api) for available options.
-defaultYear | Entries without a year will use this as year. Defaults to "To Appear".
-lang | Language to use. Now support `en` (default) and `fr`
+lang | Language to use. Now support `en` (English, default) and `fr` (Français).
+visualization | A boolean to control addition of the visualization. Defaults to `true`.
+sorting | Control the default sorting of the list. Defaults to `[[0, "desc"], [1, "desc"]]`. See <https://datatables.net/reference/api/#fnSort> for details on formatting.
+datatable | Pass options to the datatable library used to create the table of publications. See <https://datatables.net/reference/api/> for available options.
+defaultYear | Entries without a year will use this as year. Defaults to "To Appear" if `lang` is `en` (default), "À paraître" if `lang` is `fr`.
+
+An example of such usage would be:
+
+```js
+bibtexify("#bibtex", "bib-publication-list", {'defaultYear': '2001', 'lang': 'fr'});
+```
 
 ## Building from source
 
-There is a Makefile for building with make.
+There is a [Makefile](Makefile) for building with make.
 The minified version requires [minifier](https://www.minifier.org/).
-
-There is also an (untested!) Jakefile for building the combined and minified versions with [Jake](https://github.com/mde/jake)
 
 # Credits
 
 This code uses some great libraries: [jQuery](http://jquery.com/), [DataTables](http://datatables.net/),
-and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
+and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/)[^1].
+
+[^1]: This latter library could probably [be replaced](https://github.com/aubertc/bib-publication-list/issues/1) by [bibtexParseJS ](https://github.com/ORCID/bibtexParseJs) with benefits.
 
 # History / Changelog
 
@@ -127,11 +173,14 @@ The main changes are:
 
 - [Updated](https://github.com/aubertc/bib-publication-list/commit/96fed3ad87cec534ca327c55a44a176fbb1c5e93) [DataTables](https://datatables.net/) to 1.13.1,
 - [Added support](https://github.com/aubertc/bib-publication-list/commit/4155d66a05e741443b545f0b207a51d970372d0c) for `doi` and `eprint` fields.
+- [Added support](https://github.com/aubertc/bib-publication-list/commit/36840c0a564d395da57890a914e051da873c7e4a) for [Academicons](https://jpswalsh.github.io/academicons/) and [fontawesome](https://github.com/FortAwesome/Font-Awesome)[^2].
 - Changed some styles,
-- Added support for French in addition to English.
+- Improved example files,
+- Added support for French in addition to English,
+- Generally clarifying the documentation.
 
-This code is _poorly documented and maintained_, use at your own risk, and feel free to open issues or to reach out by email.
-You can see a demo [on my website](https://aubert.perso.math.cnrs.fr/#publicatio).
+[^2]: To use it, remember to include the fonts, using `	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">`, as presented in [the examples](test/html).
+
 
 The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the following:
 
@@ -147,7 +196,7 @@ The [previous fork](https://github.com/GioBonvi/bib-publication-list) added the 
 ## Deprecated 
 
 It used to be the case that the bibtex could be loaded from a file.
-This feature seems to be broken now, but here is what the original author wrote:
+This feature seems to be broken now (and to have been [unreliable in the past](https://github.com/vkaravir/bib-publication-list/issues/11)) but here is what the [original author wrote](https://github.com/vkaravir/bib-publication-list#getting-started):
 
 > Personally I prefer including it in the HTML,
 > though. This way, browsers without JavaScript enabled get at least to see the bibtex instead of a blank page.

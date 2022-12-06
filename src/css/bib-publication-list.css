@@ -74,7 +74,7 @@ span.undefined {
 }
 
 .phdthesis {
-    background-color: #999;
+    background-color: white;
 }
 
 .unpublished {
@@ -95,6 +95,10 @@ span.undefined {
 
 .book {
     background-color: #ed7878;
+}
+
+.conference{
+    background-color: #a6a6a6;
 }
 
 .legend .pub {
