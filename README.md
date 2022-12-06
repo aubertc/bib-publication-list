@@ -3,19 +3,17 @@
 bib-publication-list is a javascript tool to automatically generate an interactive HTML publication list from a BibTeX file.
 It uses [jQuery](http://jquery.com/), [DataTables](http://datatables.net/), and [JavaScript BibTeX Parser](http://sourceforge.net/projects/jsbibtex/).
 
-A static and probably better maintained alternative to this project would be, in my opinion, to [use pandoc to generate a html file from a bib file](https://tex.stackexchange.com/a/298385/34551), possibly [splitting it](https://github.com/jgm/citeproc/issues/5) (cf. also [this issue](https://github.com/jgm/pandoc-citeproc/issues/89)) using [a lua filter](https://github.com/pandoc/lua-filters/tree/master/multiple-bibliographies).
-
 ## Demo
 
 There are example files in the [`test/html`](test/html/) folder, please refer to them for examples and live demos.
-Alternatively, you can see this plug-in live [on my website](https://aubert.perso.math.cnrs.fr/#publicatio).
+Alternatively, you can see this plug-in live [on my website](https://aubert.perso.math.cnrs.fr/#publicatio) (in French).
 
 ## Getting Started
 
 To use this program, you will need to 
 
 - Include your [BibTex](https://www.bibtex.com/) references in your `html` webpage,
-- Load one css file and two javascript libraries,
+- Load one css file and two javascript libraries (jQuery, and our script),
 - Call the program with a `<script>` element.
 
 The pre-compiled (and minified) files are at [in the release](https://github.com/aubertc/bib-publication-list/releases).
@@ -157,6 +155,11 @@ bibtexify("#bibtex", "bib-publication-list", {'defaultYear': '2001', 'lang': 'fr
 
 There is a [Makefile](Makefile) for building with make.
 The minified version requires [minifier](https://www.minifier.org/).
+
+# Alternatives
+
+A static and probably better maintained alternative to this project could be to [use pandoc to generate a html file from a BibTex file](https://tex.stackexchange.com/a/298385/34551), possibly [splitting it](https://github.com/jgm/citeproc/issues/5) (cf. also [this issue](https://github.com/jgm/pandoc-citeproc/issues/89)) using [a lua filter](https://github.com/pandoc/lua-filters/tree/master/multiple-bibliographies).
+Obtaining the "interactive" part would require some efforts, however.
 
 # Credits
 
