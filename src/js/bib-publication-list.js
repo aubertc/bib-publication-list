@@ -187,14 +187,14 @@ var bibtexify = (function($) {
             var itemStr = '';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
                 itemStr += ' (<a title="' + lang.pdfversion + '." href="' +
-                    entryData.url + '"><i class="fa fa-file-pdf fa-fw" style="color:red" aria-hidden="true"></i>pdf<\/a>)';
+                    entryData.url + '" style="white-space: nowrap"><i class="fa fa-file-pdf fa-fw" style="color:red" aria-hidden="true"></i>pdf<\/a>)';
             } else if (entryData.url) {
                 itemStr += ' (<a title="' + lang.online + '"  href="' + entryData.url +
-                    '"><i class="fa fa-external-link fa-fw" style="color:blue" aria-hidden="true"></i>' + lang.link + '<\/a>)';
+                    '" style="white-space: nowrap"><i class="fa fa-external-link fa-fw" style="color:blue" aria-hidden="true"></i>' + lang.link + '<\/a>)';
             }
             if (entryData.doi) {
                 itemStr += ' (<a title="' + lang.doi + '." href="http://dx.doi.org/' +
-                    entryData.doi + '"><i class="ai ai-doi" style="color:#fab222" aria-hidden="true"></i>doi<\/a>)';
+                    entryData.doi + '" style="white-space: nowrap"><i class="ai ai-doi" style="color:#fab222" aria-hidden="true"></i>doi<\/a>)';
             }
             if (entryData.archiveprefix) {
                 if (entryData.eprint) {
@@ -202,7 +202,7 @@ var bibtexify = (function($) {
                     var archivelogo = '';
                     if (entryData.archiveprefix == "arXiv") {
                         archiveurl = 'http://arxiv.org/abs/';
-                        archivelogo = 'ai ai-arxiv';
+                        archivelogo = 'ai ai-arxiv" style="background-color:#02f702"';
                     }
                     else if (entryData.archiveprefix == "tel") {
                         archiveurl = 'https://tel.archives-ouvertes.fr/';
@@ -215,18 +215,18 @@ var bibtexify = (function($) {
                         archiveurl = 'https://hdl.handle.net/';
                     }
                     itemStr += ' (<a title="' + lang.archived + ' ' + entryData.archiveprefix + '." href="' + archiveurl + 
-                        entryData.eprint + '">' + (archivelogo ? '<i class="' + archivelogo + '" aria-hidden="true"></i>': '') + entryData.archiveprefix + '<\/a>)';
+                        entryData.eprint + '" style="white-space: nowrap">' + (archivelogo ? '<i class="' + archivelogo + '" aria-hidden="true"></i>': '') + entryData.archiveprefix + '<\/a>)';
                 }
             }
             if (entryData.file) {
-                itemStr += ' (<a title=' + lang.sourcetex + ' href="' + entryData.file + '"><i class="fa fa-code" aria-hidden="true"></i>source<\/a>)';
+                itemStr += ' (<a title=' + lang.sourcetex + ' href="' + entryData.file + '" style="white-space: nowrap"><i class="fa fa-code" aria-hidden="true" style="color: black"></i>source<\/a>)';
             }
             return itemStr;
         },
         // adds the bibtex link and the opening div with bibtex content
         bibtex: function(entryData) {
             var itemStr = '';
-            itemStr += ' (<a title="' + lang.bibtex + '" href="#" class="biblink"><i class="fa fa-file-text fa-fw" style="color:green" aria-hidden="true"></i>' +
+            itemStr += ' (<a title="' + lang.bibtex + '" href="#" class="biblink" style="white-space: nowrap"><i class="fa fa-file-text fa-fw" style="color:green" aria-hidden="true"></i>' +
                 'bib</a>)<div class="bibinfo hidden">';
             itemStr += '<a href="#" class="bibclose" title="' + lang.close + '">⨯</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
