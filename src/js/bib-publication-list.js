@@ -299,9 +299,8 @@ var bibtexify = (function($) {
                 ((entryData.editor) ?
                     ((lang.dir) ? lang.dir + " " : "") +
                     this.authors2html(entryData.editor) +
-                    ((lang.editor) ? lang.editor : "") : "") +
-            ". " +
-            ((entryData.publisher) ? entryData.publisher + ", " : "") +
+                    ((lang.editor) ? lang.editor + ".": "") : "") +
+                        ((entryData.publisher) ? entryData.publisher + ", " : "") +
             ((entryData.pages) ? "pp. " + entryData.pages : "") + // Not the cleanest, we assume that if there is a page number, then there is an address.
             ((entryData.address) ? ", " + entryData.address : "") +
             ".<\/em>";
