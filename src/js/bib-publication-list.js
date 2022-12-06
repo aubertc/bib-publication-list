@@ -63,7 +63,7 @@ var bibtexify = (function($) {
                 'conference': '<em>Workshop</em>', // we abuse the conference type alias by making it a workshop.
                 'desc': 'Description',
                 'dir': 'Sous la dir. de',
-                'doi': 'Digital Object Identifier',
+                'doi': 'Identificateur d’objet numérique',
                 'future': 'À paraître',
                 'in': 'In',
                 'inbook': 'Book chapter',
@@ -184,7 +184,7 @@ var bibtexify = (function($) {
         },
         // adds links to the PDF or url of the item
         links: function(entryData) {
-            var itemStr = '';
+            var itemStr = '<br/>';
             if (entryData.url && entryData.url.match(/.*\.pdf/)) {
                 itemStr += ' (<a title="' + lang.pdfversion + '." href="' +
                     entryData.url + '" style="white-space: nowrap"><i class="fa fa-file-pdf fa-fw" style="color:red" aria-hidden="true"></i>pdf<\/a>)';
@@ -267,9 +267,9 @@ var bibtexify = (function($) {
                 ((entryData.editor) ? lang.dir + " " + this.authors2html(entryData.editor) + ". " : "") + 
                 ((entryData.publisher) ? entryData.publisher : "") +
                 ((entryData.publisher)? ((entryData.pages)? ", " : "."):"") + 
-            ((entryData.pages) ? "pp. " + entryData.pages : "") +
-            ((entryData.address) ? ", " + entryData.address : "") +
-            ".<\/em>";
+                ((entryData.pages) ? "pp. " + entryData.pages : "") +
+                ((entryData.address) ? ", " + entryData.address + ".": "") +
+                "<\/em>";
         },
         incollection: function(entryData) {
             return this.authors2html(entryData.author) + ".<br>" +
@@ -285,8 +285,8 @@ var bibtexify = (function($) {
                 "<strong id=\"" + entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                 lang.in + ": <em>" + entryData.journal +
                 ((entryData.volume) ? ", " + entryData.volume : "") + 
-                ((entryData.number) ? "(" + entryData.number + ")" : "") + ", " +
-                ((entryData.pages) ? "pp. " + entryData.pages : "") +
+                ((entryData.number) ? "(" + entryData.number + ")" : "") +
+                ((entryData.pages) ? ", pp. " + entryData.pages + "." : "") +
                 ((entryData.address) ? entryData.address + "." : "") + "<\/em>";
         },
         misc: function(entryData) {
