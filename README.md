@@ -124,9 +124,7 @@ Optionally, you can add the [Academicons](https://jpswalsh.github.io/academicons
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 ```
 
-to obtain icons:
-
-![](test/illustrations/icons_demo.png)
+to obtain the icons as pictured above. This is optional.
 
 ## Configuration Options
 
