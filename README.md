@@ -6,7 +6,7 @@ It uses [jQuery](http://jquery.com/), [DataTables](http://datatables.net/), and 
 ## Demo
 
 There are example files in the [`test/html`](test/html/) folder, please refer to them for examples and live demos.
-Alternatively, you can see this plug-in live [on my website](https://aubert.perso.math.cnrs.fr/#publicatio) (in French).
+Alternatively, you can see this plug-in live [on my French website](https://aubert.perso.math.cnrs.fr/#publicatio) or [on the English one](https://spots.augusta.edu/caubert/#bib-publication-list).
 
 ## Getting Started
 
@@ -66,7 +66,7 @@ the ones you have created.
 Load the css file, [jquery](https://releases.jquery.com/) and our script: 
 
 ```html
-<link rel="stylesheet" href="bib-list.css"/>
+<link rel="stylesheet" href="bib-list.css">
 ...
 <script
             src="https://code.jquery.com/jquery-3.6.1.js"
@@ -78,7 +78,7 @@ Load the css file, [jquery](https://releases.jquery.com/) and our script:
 Alternatively, you can use the compressed versions:
     
 ```html
-<link rel="stylesheet" href="bib-list.min.css"/>
+<link rel="stylesheet" href="bib-list.min.css">
 ...
 <script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
