@@ -86,17 +86,6 @@ Alternatively, you can use the compressed versions:
 <script type="text/javascript" src="bib-list.min.js"></script>
 ```
 
-You can even use [jsdelivr](https://www.jsdelivr.com/) if you don't want to host any file:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aubertc/bib-publication-list/build/bib-list.min.css"/>
-...
-<script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
-            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-            crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/aubertc/bib-publication-list/build/bib-list.min.js"></script>    
-```
-
 ### Call the script
 
 Finally, the `bib-publication-list` needs to know the input data element and the output table (cf. [below](#configuration-options) for the configuration options).
