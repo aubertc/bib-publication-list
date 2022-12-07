@@ -449,8 +449,7 @@ var bibtexify = (function($) {
                 "info": lang.info,
                 "infoEmpty": lang.infoEmpty,
                 "infoFiltered": lang.infoFiltered
-            },
-            'bPaginate': false
+            }
         }, this.options.datatable));
         if (this.options.visualization) {
             this.addBarChart();
