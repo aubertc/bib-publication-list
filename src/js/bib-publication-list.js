@@ -20,6 +20,7 @@ var bibtexify = (function($) {
             .replace(/\{/g, '')
             .replace(/\}/g, '')
             .replace(/\\&/g, '&')
+            .replace(/@/g, 'test')
             .replace(/--/g, '&ndash;');
         return str;
     };
