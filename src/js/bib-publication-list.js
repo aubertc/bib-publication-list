@@ -23,29 +23,6 @@ var bibtexify = (function($) {
             .replace(/--/g, '&ndash;');
         return str;
     };
-    var uriencode = function(str) {
-        if (!str) {
-            return '';
-        }
-        // TODO: this is probably not a complete list..
-        str = str.replace(/\\"\{a\}/g, '%C3%A4')
-            .replace(/\{\\aa\}/g, '%C3%A5')
-            .replace(/\\aa\{\}/g, '%C3%A5')
-            .replace(/\\"a/g, '%C3%A4')
-            .replace(/\\"\{o\}/g, '%C3%B6')
-            .replace(/\\'e/g, '%C3%A9')
-            .replace(/\\'\{e\}/g, '%C3%A9')
-            .replace(/\\'a/g, '%C3%A1')
-            .replace(/\\'A/g, '%C3%81')
-            .replace(/\\"o/g, '%C3%B6')
-            .replace(/\\"u/g, '%C3%BC')
-            .replace(/\\ss\{\}/g, '%C3%9F')
-            .replace(/\{/g, '')
-            .replace(/\}/g, '')
-            .replace(/\\&/g, '%26')
-            .replace(/--/g, '%E2%80%93');
-        return str;
-    };
     // helper functions to turn a single bibtex entry into HTML
     var bib2html = {
         // We define the required variables for French and English.
