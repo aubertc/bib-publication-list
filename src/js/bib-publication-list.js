@@ -317,8 +317,7 @@ var bibtexify = (function($) {
         proceedings: function(entryData) {
             return ((entryData.editor) ?
                     ((lang.dir) ? lang.dir + " " : "") +
-                    this.authors2html(entryData.editor) +
-                    ((lang.editor) ? lang.editor : "") : "") + "<br>" +
+                    this.authors2html(entryData.editor) : "") + "<br>" +
                     "<strong id=\"" +  entryData.cite + "\">" + entryData.title + "</strong>.<br/>" +
                     ((entryData.volume) ? "T. " + entryData.volume + "." : "") +
                     ((entryData.series) ? " " + entryData.series  : "") +
