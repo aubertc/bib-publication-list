@@ -1,0 +1,54 @@
+<!doctype html>
+</body>
+</html>
+<html>
+	<head>
+		<title>Testing bibtex</title>
+		<link rel="stylesheet" href="../../build/bib-list.css">
+		<!-- minified versions: -->
+		<!--
+		<link rel="stylesheet" href="../../build/bib-list.min.css">
+        --> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> <!-- This is optional -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"> <!-- This is optional, too. -->
+    </head>
+	<body>
+    <noscript>
+      <!-- bibtex source hidden by default, show it if JS disabled -->
+      <style>
+      #bibtex { display: block;}
+      </style>
+    </noscript>
+    <p><em>Attention</em> : Cet example ne sert que pour documenter un bogue.</p>
+    <!--Automatic graph positioning-->
+    <div id="bib-publication-list">
+      <table></table>
+    </div>
+    <pre id="bibtex" style="display:none;">
+Un commentaire.
+@proceedings{test,
+  title = {Ce titre contient un @ . }
+}
+</pre>
+    <!-- We load jquery first: -->
+    <script	  src="https://code.jquery.com/jquery-3.6.1.min.js"
+			  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+			  crossorigin="anonymous"></script>
+    <!-- Then we load our script: -->
+    <script type="text/javascript" src="../../build/bib-list.js"></script>
+    <!-- Minified version: -->
+    <!--
+    <script type="text/javascript" src="../../build/bib-list.min.js"></script>
+    -->
+    <!-- Finally, we call bibtexify with the correct options:
+         - id of the pre element containing the bibliography,
+         - id of the div element containing the table that will display the references,
+         - optional arguments.
+    -->
+    <script type="text/javascript">
+		    $(document).ready(function() {
+        	bibtexify("#bibtex", "bib-publication-list", {'defaultYear': '2001', 'lang': 'fr'});
+    		});
+		</script>
+	</body>
+</html>
