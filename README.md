@@ -145,21 +145,23 @@ The minified version requires [minifier](https://www.minifier.org/).
 
 # Alternatives
 
-I list here some approaches that, essentially, "convert `bib` files plus some input into `html`". 
+I list here some approaches that, essentially, "convert `bib` files plus some input into `html`", either dynamically or statically.
 
-## Static
-
-### Pandoc
-
-A static and probably better maintained alternative to this project could be to [use pandoc to generate a html file from a BibTex file](https://tex.stackexchange.com/a/298385/34551), possibly [splitting it](https://github.com/jgm/citeproc/issues/5) (cf. also [this issue](https://github.com/jgm/pandoc-citeproc/issues/89)) using [a lua filter](https://github.com/pandoc/lua-filters/tree/master/multiple-bibliographies).
+## Dynamyc 
 
 ### BibBase
 
 The [BibBase](https://bibbase.org/) tool seems to offer interesting options, but [it is a commercial solution](https://bibbase.org/network/pricing).
 
+## Static
 
+### Pandoc
 
+[Pandoc](https://pandoc.org/) can be used to [generate a html file from a BibTex file](https://tex.stackexchange.com/a/298385/34551), possibly [splitting it](https://github.com/jgm/citeproc/issues/5) (cf. also [this issue](https://github.com/jgm/pandoc-citeproc/issues/89)) using [a lua filter](https://github.com/pandoc/lua-filters/tree/master/multiple-bibliographies).
 
+### htmbib 
+
+The [htmlbib project](https://github.com/astahfrom/htmlbib) project can be tested [directly on-line](https://astahfrom.github.io/htmlbib/).
 
 
 # Credits
