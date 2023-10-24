@@ -196,7 +196,7 @@ var bibtexify = (function($) {
                         archivelogo = 'ai ai-hal" style="color:#cd3c1b"'; // I am not aware of a particular logo for tel that is different from the logo of hal.
                     }
                     else if (entryData.archiveprefix == "hal") {
-                        archiveurl = 'https://hal.archives-ouvertes.fr/';
+                        archiveurl = 'https://hal.science/';
                         archivelogo = 'ai ai-hal" style="color:#cd3c1b"';
                     }
                     else if (entryData.archiveprefix == "handle") {
