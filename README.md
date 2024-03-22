@@ -142,6 +142,13 @@ bibtexify("#bibtex", "bib-publication-list", {'defaultYear': '2001', 'lang': 'fr
 
 There is a [Makefile](Makefile) for building with make.
 The minified version requires [minifier](https://www.minifier.org/).
+On debian, a simple
+
+```
+sudo apt-get install -y minify
+```
+
+will take care of this dependency. Maybe [this version](https://github.com/tdewolff/minify/tree/master/cmd/minify) would work as well, but it hasn't been tested.
 
 # Alternatives
 
